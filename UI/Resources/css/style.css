@@ -25,7 +25,7 @@
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5)
     ),
-    url(https://pixabay.com/get/ea33b30e2df41c22d9584518a3444f93e777e7dd04b0144390f9c47ea6ebbd/car-repair-362150_1920.jpg);
+    url("../Images/bg.jpg");
     background-size: cover;
 }
 nav{
@@ -195,11 +195,60 @@ footer{
   color:#fff;
   cursor: pointer;
 }
-.register-user #create{
+.login-user .create{
   font-size: 3rem;
   color:#c0c0c0;
 }
+.login-user{
+  width:100%;
+  background-color: rgba(0,0,0,0.8);
+  padding: 10px;
+}
+.login-user input[type=Email] {
+    width: 50%;
+    padding: 8px 16px;
+    margin: 8px 0;
+    line-height: 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px
+    font-size: 1.3rem;
+    font-family: 'Roboto Slab';
+    box-sizing: border-box;
+}
+.login-user input[type=password] {
+    width: 50%;
+    padding: 8px 16px;
+    margin: 8px 0;
+    line-height: 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px
+    font-size: 1.3rem;
+    font-family: 'Roboto Slab';
+    box-sizing: border-box;
+}
+.login-user input[type=submit] {
+    padding:5px 15px; 
+    background:#c0c0c0; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; 
+    width:80px;
 
+}
+.login-user .close{
+  position: absolute;
+  text-align: right;
+  right: 20px;
+  top: 5px;
+  font-size: 3rem;
+  color:#fff;
+  cursor: pointer;
+}
+.login-user .create{
+  font-size: 3rem;
+  color:#c0c0c0;
+}
 /*Responsive Design with Media Querries*/
 @media screen and  (max-width: 1100px){
   #bigWrapper{
