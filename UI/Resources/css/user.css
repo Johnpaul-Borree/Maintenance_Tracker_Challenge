@@ -27,11 +27,17 @@ nav a:active{
 }
 #mainBody{
 	position: absolute;
-	top: 250px;
+	top: 150px;
 	left: 50px;
-	max-width: 100vh;
+	max-width: 100%;
 	margin-left: 280px;
 	height: 700px;
+}
+.request-field{
+	display: inline-block;
+	margin: 2px;
 
-
+}
+.request{
+	margin-top: 10px;
 }

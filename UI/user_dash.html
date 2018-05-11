@@ -16,6 +16,31 @@
 </section>
 <content id="mainBody">
 	<h1>User Requests opened onthe Dash board as seen Here.</h1>
+
+	<div class="request-form">
+		<form>
+			<div class="request-field">
+		        <label for="requests">REQUEST TYPE:<select id="rtype" name="request">
+			        <option>AUtomobile Repairs</option>
+			        <option>Office Equipments</option>
+			        <option>Routine Maintenance</option>
+			        <option>System Maintenance</option>
+			        <option>Auxiliary Services</option>
+			        </select>
+		        </label>
+            </div>​
+            <div class="request-field">
+            	<label for="Requests">REQUEST TIME:</label>
+            	<input type="date" name="rdate">
+  				<input type="submit" value="OK">
+            </div><br><br>
+            <div class="request">
+            	<label for="Requests"> Summary: </label>
+            	<textarea rows="10" cols="50" name="comment" form="usrform">
+				Enter  request...</textarea>
+            </div>
+		</form>
+	</div>
 </content>
 </body>
 </html>
