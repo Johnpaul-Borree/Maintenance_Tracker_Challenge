@@ -114,13 +114,13 @@ header p {
   font-weight: bolder;
 }
 header p a{
+  position: absolute;
   text-decoration: none;
   font-size: 1rem;
   color:#c0c0c0;
   font-family: 'Roboto Slab';
   padding: 3px;
   background-color: blue;
-  cursor: pointer;
 }
 
 footer{
@@ -132,77 +132,20 @@ footer{
 }
 
 /*Form*/
-.Create-User-Wrapper{
+.Login-User-Wrapper{
   text-align: center;
   position: absolute;
   width:900px;
   margin: 10px 200px;
 }
-.register-user{
+.login-user{
   width:100%;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(80,80,80,0.8);
   padding: 10px;
-}
-.register-user input[type=text] {
-    width: 50%;
-    padding: 8px 16px;
-    margin: 8px 0;
-    line-height: 20px;
-    border-radius: 5px;
-    -webkit-border-radius: 5px
-    font-size: 1.3rem;
-    font-family: 'Roboto Slab';
-    box-sizing: border-box;
-}
-.register-user input[type=Email] {
-    width: 50%;
-    padding: 8px 16px;
-    margin: 8px 0;
-    line-height: 20px;
-    border-radius: 5px;
-    -webkit-border-radius: 5px
-    font-size: 1.3rem;
-    font-family: 'Roboto Slab';
-    box-sizing: border-box;
-}
-.register-user input[type=password] {
-    width: 50%;
-    padding: 8px 16px;
-    margin: 8px 0;
-    line-height: 20px;
-    border-radius: 5px;
-    -webkit-border-radius: 5px
-    font-size: 1.3rem;
-    font-family: 'Roboto Slab';
-    box-sizing: border-box;
-}
-.register-user input[type=submit] {
-    padding:5px 15px; 
-    background:#c0c0c0; 
-    border:0 none;
-    cursor:pointer;
-    -webkit-border-radius: 10px;
-    border-radius: 10px; 
-    width:80px;
-
-}
-.register-user .close{
-  position: absolute;
-  text-align: right;
-  right: 20px;
-  top: 5px;
-  font-size: 3rem;
-  color:#fff;
-  cursor: pointer;
 }
 .login-user .create{
   font-size: 3rem;
   color:#c0c0c0;
-}
-.login-user{
-  width:100%;
-  background-color: rgba(0,0,0,0.8);
-  padding: 10px;
 }
 .login-user input[type=Email] {
     width: 50%;
