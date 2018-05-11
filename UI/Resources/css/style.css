@@ -36,11 +36,11 @@ nav{
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px; 
 }
-nav ul{
+nav .pages{
   float: right;
   margin-right: 50px;
 }
-nav ul li{
+nav .pages li{
   list-style-type: none;
   display: inline-block;
   line-height: 80px;
@@ -48,19 +48,57 @@ nav ul li{
   font-family:  'Roboto';
 
 }
-nav ul li a{
+nav .pages li a{
   margin-top: 2px;
   text-decoration: none;
   color: #fff;
   padding: 50px;
 
 }
-nav ul li a:hover{
+nav .pages li a:hover{
   padding-bottom: 5px;
   background-color: #f55;
   border-radius: 5px;
 
 }
+nav .user{
+  text-align: center;
+  padding: 1px;
+}
+nav .user li{
+  list-style-type: none;
+  display: inline-block;
+  line-height: 80px;
+  font: 1.5rem solid;
+  font-family:  'Roboto';
+  border:2px solid #03f;
+  border-radius: 5px;
+
+}
+nav .user li a{
+  margin-top: 2px;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+
+}
+nav .user .join{
+  background-color: #1d1;
+}
+nav .user .join a{
+  width:10px;
+
+}
+nav .user .join a:hover{
+  padding-bottom: 4px;
+  background-color: #5d5;
+  border-radius: 10px;
+  }
+  nav .user .sinin a:hover{
+  padding-bottom: 4px;
+  background-color: #1d1;
+  border-radius: 10px;
+  }
 header {
   position: absolute;
   top: 40%;
