@@ -92,3 +92,20 @@ footer{
   bottom: 0;
   width: 100%;
 }
+
+
+
+/*Responsive Design with Media Querries*/
+@media screen and  (max-width: 1100px){
+  #bigWrapper{
+    width: 100%;
+  }
+  #Wrapper{
+    width: 100%;
+  }
+  header{
+    text-align: left;
+    font-size: 12px;
+  }
+
+}
