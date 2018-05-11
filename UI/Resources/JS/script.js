@@ -10,3 +10,15 @@ function mediaQuery(x) {
 var x = window.matchMedia("(max-width: 1100px)")
 mediaQuery(x) // Call listener function at run time
 x.addListener(mediaQuery)
+
+document.getElementById("user").style.display = "none";
+
+//Event of opening
+document.getElementById("joined").addEventListener("click",function(){
+	document.getElementById("user").style.display = "block";
+},false);
+//Event of closing form
+document.getElementById("closing").addEventListener("click",function() {
+	document.getElementById("user").style.display = "none";
+},false);
+
