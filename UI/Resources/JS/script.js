@@ -11,14 +11,17 @@ var x = window.matchMedia("(max-width: 1100px)")
 mediaQuery(x) // Call listener function at run time
 x.addListener(mediaQuery)
 
-document.getElementById("user").style.display = "none";
+document.getElementById("login").style.display = "none";
 
 //Event of opening
-document.getElementById("joined").addEventListener("click",function(){
-	document.getElementById("user").style.display = "block";
-},false);
+
+document.getElementById("member").addEventListener("click",function (){
+	document.getElementById("login").style.display = "block";
+},true);
+
 //Event of closing form
-document.getElementById("closing").addEventListener("click",function() {
-	document.getElementById("user").style.display = "none";
-},false);
+document.getElementById("close").addEventListener("click",function() {
+	document.getElementById("login").style.display = "none";
+});
+
 
