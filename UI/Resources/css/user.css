@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab');
+@import url('https://fonts.googleapis.com/css? family=Anda|Permanent+Marker|Raleway:300');
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900);
+
+* {
+   box-sizing: border-box;
+  
+}
+body{
+	font-family: 'Source Sans Pro', sans-serif;
+  /*font-family: 'Roboto Slab', 
+  font-family: 'Roboto', */
+}
+#sideMenu{
+	background-color: #B19CD9;
+	max-width: 280px;
+	height: 700px;
+}
+nav a{
+	display: block;
+	color:#fff;
+	text-decoration: none;
+	padding: 15px 30px;
+}
+nav a:active{
+	background-color: #6960EC;
+}
+#mainBody{
+	position: absolute;
+	top: 150px;
+	left: 50px;
+	max-width: 100%;
+	margin-left: 280px;
+	height: 700px;
+}
+.request-field{
+	display: inline-block;
+	margin: 2px;
+
+}
+.request{
+	margin-top: 10px;
+}
