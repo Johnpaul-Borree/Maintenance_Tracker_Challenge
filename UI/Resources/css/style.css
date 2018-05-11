@@ -28,6 +28,39 @@
     url(https://pixabay.com/get/ea33b30e2df41c22d9584518a3444f93e777e7dd04b0144390f9c47ea6ebbd/car-repair-362150_1920.jpg);
     background-size: cover;
 }
+nav{
+  height: 38px;
+  
+  background-color:  #FF6347;
+  border-bottom: 2px solid #f77;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px; 
+}
+nav ul{
+  float: right;
+  margin-right: 50px;
+}
+nav ul li{
+  list-style-type: none;
+  display: inline-block;
+  line-height: 80px;
+  font: 1.5rem solid;
+  font-family:  'Roboto';
+
+}
+nav ul li a{
+  margin-top: 2px;
+  text-decoration: none;
+  color: #fff;
+  padding: 50px;
+
+}
+nav ul li a:hover{
+  padding-bottom: 5px;
+  background-color: #f55;
+  border-radius: 5px;
+
+}
 header {
   position: absolute;
   top: 40%;
