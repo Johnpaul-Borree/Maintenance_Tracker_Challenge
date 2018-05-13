@@ -29,6 +29,7 @@ nav a:active{
 #mainBody{
 	position: absolute;
 	background-color:#fff;
+	padding:1%;
 	top: 5%;
 	left: 5%;
 	max-width: 100%;
