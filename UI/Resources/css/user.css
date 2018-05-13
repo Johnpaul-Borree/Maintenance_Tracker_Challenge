@@ -8,6 +8,7 @@
 }
 body{
 	font-family: 'Source Sans Pro', sans-serif;
+	background-color: rgba(64,64,64,0.5);
   /*font-family: 'Roboto Slab', 
   font-family: 'Roboto', */
 }
@@ -27,6 +28,7 @@ nav a:active{
 }
 #mainBody{
 	position: absolute;
+	background-color:#fff;
 	top: 150px;
 	left: 50px;
 	max-width: 100%;
