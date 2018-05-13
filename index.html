@@ -1,18 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="eng-us">
 <head>
-<title>
-The Maintenance Tracker UI Templates are :
-</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Maintenance Tracker </title>
+	<link rel="stylesheet" type="text/css" href="UI/Resources/css/style.css">
+
 </head>
 <body>
-Home : <a href="UI/index.html">Home</a>
-admin: <a href ="UI/admin_dash.html">admin</a>
-others:
-<a href ="UI/create.html">Create Account</a>
-<a href ="UI/user_dash.html">User Dashboard</a>
-<a href ="UI/user_view.html">User view</a>
-<a href ="UI/admin_view_single_user.html">Admin View single user</a>
-  <p> Basic Pages will be Home, Contact,Blog,User Dashboard and Admin Dashboard</p>
-</body>
+	<div id="bigWrapper">
+		<div id="Wrapper">
+			<nav id="navMenu" class="navigate">
+					<ul class="pages">
+						<li><a href="#Home">Maintenance Tracker</a></li>
+						<li><a href="#Contact">Contact</a></li>
+						<li><a href="#Blog">Blog</a></li>
+					</ul>
+					<a href="javascript:void(0);" class="menu"><img src="UI/Resources/Images/menu.svg" alt="" id="menuDrop"></a>
+					<ul class="user">
+						<li class="sinin"><a href="#" id="member">Sin In</a></li>
+						<li class="join" id="joined"><a href="create.html" target="_blank">Join</a></li>
+					</ul>
+			</nav>
+			<header>
+					<p id="notice"> We have all it takes in making sure your <br> equipments are in good condition.<br>No more issues of faulty equipments,<br> you do not need to make a call <br>simply get started by clicking join. </p>
+			</header>
+			<div class="Login-User-Wrapper">
+	        <form class="login-user" id="login" name="user-form">
+	        	<span class="close" id="close">&times;</span>
+	        	<span class="create">USER LOGIN:</span><br><br>
+	            <input type="email" name="Email" placeholder="Email Address"><br><br>
+	            <input type="password" name="Password1" placeholder="Password"><br><br>
+	            <input type="submit" value="Login" id="reg"><br><br>
+	            <span class="create">Admin LOGIN:</span><br><br>
+	            <input type="email" name="Email" placeholder=" Email Address"><br><br>
+	            <input type="password" name="Password1" placeholder="Password"><br><br>
+	            <input type="submit" value="Login" id="reg">
+	        </form>
+    </div>
+		</div>
+	    <footer>
+				<p>Maintenance Tracker Andela Bootcamp Preparatory Test
+				<br>&copy;<a href="#">Johnpaul Attamah</a>.</p>
+		</footer>
+	</div>
+	
+		<script type="text/javascript" src="UI/Resources/JS/script.js"></script>
+	</body>
 </html>
