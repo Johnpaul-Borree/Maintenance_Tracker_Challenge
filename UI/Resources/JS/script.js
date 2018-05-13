@@ -11,17 +11,31 @@ var x = window.matchMedia("(max-width: 1100px)")
 mediaQuery(x) // Call listener function at run time
 x.addListener(mediaQuery)
 
-document.getElementById("login").style.display = "none";
 
-//Event of opening
-
-document.getElementById("member").addEventListener("click",function (){
-	document.getElementById("login").style.display = "block";
-},true);
-
-//Event of closing form
-document.getElementById("close").addEventListener("click",function() {
-	document.getElementById("login").style.display = "none";
-});
+var viewForm = document.querySelector("#login");
+	viewForm.style.display = "none";
 
 
+var wrap = document.querySelector("#Wrapper");
+	wrap.addEventListener("click",handleEvents,false);
+
+//login events
+function handleEvents(e) {
+	if (e.target !== e.currentTarget) {
+		if (e.target === document.querySelector('#member')) {
+        viewForm.style.display = "block"; 
+      } else if (e.target === document.querySelector('#close')) {
+        viewForm.style.display = "none";
+      }
+    }
+    e.stopPropagation();
+}
+//responsive nav
+/*
+function menuNav() {
+    var navi = document.getElementById("navMenu");
+    if (navi.className === "navigate") {
+        navi.className += " responsive";
+    } else {
+        navi.className = "navigate";
+    }*/
