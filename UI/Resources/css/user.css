@@ -29,11 +29,10 @@ nav a:active{
 #mainBody{
 	position: absolute;
 	background-color:#fff;
-	top: 150px;
-	left: 50px;
+	top: 5%;
+	left: 5%;
 	max-width: 100%;
-	margin-left: 280px;
-	height: 700px;
+	margin-left: 30%;
 }
 .request-field{
 	display: inline-block;
