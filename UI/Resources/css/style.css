@@ -55,12 +55,12 @@ nav .pages li a{
   margin-top: 2px;
   text-decoration: none;
   color: #fff;
-  padding: 50px;
+  padding: 30px;
 
 }
 nav .pages li a:hover{
   padding-bottom: 5px;
-  background-color: #f55;
+  background-color: #55f;
   border-radius: 5px;
 
 }
@@ -102,9 +102,9 @@ nav .user .join a:hover{
   background-color: #1d1;
   border-radius: 10px;
   }
-  nav .menu{
-    display: none;
+  nav .pages .menu{
     position: absolute;
+    display: none;
   }
 header {
   position: absolute;
@@ -216,21 +216,47 @@ footer{
     width: 100%;
     overflow: hidden;
 }
+ nav{
+  text-align: center;
+  padding: 0;
+  overflow: visible;
+ } 
+ nav .pages{
+  float: none;
+  width: 100%;
+ }
+ nav .pages li{
+  display: block;
+  padding: 5px;
+  line-height: 30px;
+  background-color: #f55;
+  border-bottom: 1px solid #333;
+  overflow: hidden;
+  
+ }
+nav .pages li:not(:first-child) {display: none;}
+nav .pages .menu{
+  display: block;
+  top:3px;
+  right: 5px;
+}
+nav .pages .responsive li{
+  display: block;
+  
+ }
+ nav .user{
+  position: absolute;
+  top:200px;
+  margin-left: 150px;
+  padding: 1px;
+  overflow: hidden;
+}
+nav .user li{
+  line-height: 3%;
+  font: 1rem solid;
+  font-family:  'Roboto';
+  border:1px solid #03f;
+  border-radius: 3px;
 
-  nav .pages li:not(:first-child) {display: none;}
-  nav a.menu {
-    right: 10px;
-    display: block;
-  }
-  .navigate.responsive {position: relative;}
-  .navigate.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .navigate.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
+}
 }
