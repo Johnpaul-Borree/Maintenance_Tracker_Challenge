@@ -26,16 +26,19 @@ function handleEvents(e) {
         viewForm.style.display = "block"; 
       } else if (e.target === document.querySelector('#close')) {
         viewForm.style.display = "none";
+      }else if(e.target === document.querySelector("#menuDrop")){
+      	myFunction();
       }
+      //console.log(document.getElementsByClassName('responsive'));
     }
-    e.stopPropagation();
+    //e.stopPropagation();
 }
-//responsive nav
-/*
-function menuNav() {
+
+function myFunction() {
     var navi = document.getElementById("navMenu");
-    if (navi.className === "navigate") {
+    if (navi.className === "pages") {
         navi.className += " responsive";
     } else {
-        navi.className = "navigate";
-    }*/
+        navi.className = "pages";
+    }
+}
