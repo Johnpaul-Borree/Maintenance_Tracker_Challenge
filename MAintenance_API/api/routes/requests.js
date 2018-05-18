@@ -38,6 +38,17 @@ router.get("/:id",(req, res, next) => {
 	res.json(userRequest);
 });
 
+//PUT /users/requests/id
+router.put("/:id",(req, res, next) => {
+	const requestId = parseInt(req.params.id);
+	const userRequest = userRequests.find(r => r.id === requestId);
 
+	userRequest.type        = req.body.type;
+	userRequest.requestDate = req.body.requestDate;
+	userRequest.requestTime = req.body.requestTime;
+	userRequest.Summary     = req.body.Summary;
+
+	res.json(userRequest);
+});
 
 module.exports = router;
