@@ -1,5 +1,7 @@
+const Joi = require("joi");
 const express = require("express");
 const router = express.Router();
+
 
 router.use(express.json());
 
@@ -18,6 +20,20 @@ router.get("/",(req, res, next) => {
 
 //POST:/users/request
 router.post("/",(req, res, next) => {
+
+	//validate input with joi.
+	const schema ={
+		type: Joi.string().min(4).required(),
+		Summary: Joi.string().min(10).required()
+	};
+
+	const result = Joi.validate(req.body,schema);
+	if (result.error) {
+		//return Http status code 400 -- Bad Request
+		res.status(400).json(result.error.details[0].message);
+		return;
+	}
+
 	const userRequest = {
 		id: userRequests.length +1,
 		type: req.body.type,
