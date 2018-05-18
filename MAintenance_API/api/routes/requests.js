@@ -14,7 +14,13 @@ router.get("/",(req, res, next) => {
 	res.json(userRequests);
 });
 
+//GET: /users/requests/id
+router.get("/:id",(req, res, next) => {
+	const requestId = parseInt(req.params.id);
+	const userRequest = userRequests.find(r => r.id === requestId);
 
+	res.json(userRequest);
+});
 
 
 module.exports = router;
