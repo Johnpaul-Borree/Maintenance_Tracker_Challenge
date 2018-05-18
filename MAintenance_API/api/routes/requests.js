@@ -35,6 +35,11 @@ router.get("/:id",(req, res, next) => {
 	const requestId = parseInt(req.params.id);
 	const userRequest = userRequests.find(r => r.id === requestId);
 
+	if (!userRequest) {
+		//404 status code error
+		res.status(404).json("The request with the given id was not found");
+	}
+
 	res.json(userRequest);
 });
 
