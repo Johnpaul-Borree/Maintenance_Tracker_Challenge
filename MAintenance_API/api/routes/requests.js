@@ -51,4 +51,15 @@ router.put("/:id",(req, res, next) => {
 	res.json(userRequest);
 });
 
+//DELETE /users/requests/id
+router.delete("/:id",(req, res, next) => {
+	const requestId = parseInt(req.params.id);
+	const userRequest = userRequests.find(r => r.id === requestId);
+
+	const index = userRequests.indexOf(userRequest);
+	userRequests.splice(index,1);
+
+	res.json(userRequest);
+});
+
 module.exports = router;
