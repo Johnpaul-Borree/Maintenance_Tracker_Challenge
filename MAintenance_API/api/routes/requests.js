@@ -51,6 +51,7 @@ router.get("/:id",(req, res) => {
 	if (!userRequest) {
 		//404 status code error
 		res.status(404).json("The request with the given id was not found");
+		return;
 	}
 
 	res.json(userRequest);
@@ -63,6 +64,7 @@ router.put("/:id",(req, res) => {
 
 	if (!userRequest) {
 		res.status(404).send("The request with the given id was not found");
+		return;
 	}
 
 	const {error} = validateReuests(req.body);
@@ -84,6 +86,11 @@ router.put("/:id",(req, res) => {
 router.delete("/:id",(req, res) => {
 	const requestId = parseInt(req.params.id);
 	const userRequest = userRequests.find(r => r.id === requestId);
+
+	if (!userRequest) {
+		res.status(404).send("The request with the given id was not found");
+		return;
+	}
 
 	const index = userRequests.indexOf(userRequest);
 	userRequests.splice(index,1);
