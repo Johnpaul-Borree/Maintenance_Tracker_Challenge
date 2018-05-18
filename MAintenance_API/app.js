@@ -9,7 +9,7 @@ app.use("/users/requests", requestRoutes);
 
 app.set("json spaces",2);
 
-app.use((req, res, next) => {
+app.use((req, res) => {
 	res.status(200).json({
 		message : "connected"
 	});
