@@ -9,7 +9,10 @@ const userRequests = [
 	{id: 5, type: "Security", requestDate: "2018-02-14", requestTime: "14:31:34.2750500", Summary: "Replacement of old security devices"}
 ];
 
-
+//GET: /users/requests
+router.get("/",(req, res, next) => {
+	res.json(userRequests);
+});
 
 
 
