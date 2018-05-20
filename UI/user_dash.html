@@ -7,15 +7,19 @@
 	<link rel="stylesheet" type="text/css" href="Resources/css/user.css">
 </head>
 <body>
+	<header class="head user">
+		<a class="menu" href="javascript:void(0);"><img id="menuDrop" src="Resources/Images/menu.svg"></a>
+		<h2>User Dashboard</h2>
+	</header>
 <section id="sideMenu">
 	<nav>
-		<a href="#">User Profile</a>
-		<a href="#">Make a Request</a>
-		<a href="#">View My Requests</a>
+		<a href="#">My Profile</a>
+		<a href="#" class="activeUser">Make a Request</a>
+		<a href="#">View My Requests</a>  
 	</nav>
 </section>
 <content id="mainBody">
-	<h1>User Requests opened onthe Dash board as seen Here.</h1>
+	<h1 class="userh1">Create New Requests.</h1>
 
 	<div class="request-form">
 		<form>
@@ -30,16 +34,18 @@
 		        </label>
             </div>​
             <div class="request-field">
-            	<label for="Requests">REQUEST TIME:</label>
+            	<label for="Requests">REQUEST DATE:</label>
             	<input type="date" name="rdate">
             </div><br><br>
+            <div class="request-field">
+            	<label for="Requests">REQUEST TIME:</label>
+            	<input type="time" step="1" name="rtime">
+            </div><br><br>
             <div class="request">
-            	<label for="Requests"> Summary: </label>
-            	<textarea rows="10" cols="50" name="comment" form="usrform">
-				Enter  request...</textarea>
+            	<span class="Summary"> Summary: </span>
+            	<textarea placeholder="Enter request..." rows="10" cols="50" name="comment"></textarea>
             </div>
-		<div class="submit">
-            	<input type="submit" value="SUBMIT REQUEST" name="rdate">
+            <input type="submit" name="create" value="create Request">
 		</form>
 	</div>
 </content>
