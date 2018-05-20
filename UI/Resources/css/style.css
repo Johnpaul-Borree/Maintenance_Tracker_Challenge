@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab');
-@import url('https://fonts.googleapis.com/css? family=Anda|Permanent+Marker|Raleway:300');
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900);
+ @import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab');
+ @import url('https://fonts.googleapis.com/css? family=Anda|Permanent+Marker|Raleway:300');
+ @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900');
 
 * {
-	margin: 0;
+  margin: 0;
    padding: 0;
    box-sizing: border-box;
   font-family: 'Source Sans Pro', sans-serif;
@@ -12,8 +12,8 @@
 }
 
 #bigWrapper{
-	width:100%;
-	margin: 0;
+  width:100%;
+  margin: 0;
    padding: 0;
 }
 #Wrapper{
@@ -32,15 +32,17 @@
     background-attachment: fixed;
 }
 nav{
-  height: 38px;
+  
   overflow: hidden;
   background-color:  #FF6347;
   border-bottom: 2px solid #f77;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px; 
 }
-nav .pages{
-  float: right;
+nav .pages, nav .user{
+  display:inline-block;
+}
+nav .pages, nav .header{
   margin-right: 50px;
 }
 nav .pages li{
@@ -51,11 +53,25 @@ nav .pages li{
   font-family:  'Roboto';
 
 }
+nav .header{
+  display: inline-block;
+}
+nav .header .menu{
+  margin-top: 10px;
+}
+nav .header a{
+  line-height: 80px;
+  font: 1.5rem solid;
+  font-family:  'Roboto';
+  text-decoration: none;
+  color: #fff;
+  padding: 30px;
+}
 nav .pages li a{
   margin-top: 2px;
   text-decoration: none;
   color: #fff;
-  padding: 30px;
+  padding: 10px;
 
 }
 nav .pages li a:hover{
@@ -65,8 +81,14 @@ nav .pages li a:hover{
 
 }
 nav .user{
-  margin-left: 150px;
+  margin-right: 100px;
+  float: right;
   padding: 1px;
+}
+nav .clear-fix{
+  clear: both;
+  content: "";
+  display:inline-block;
 }
 nav .user li{
   list-style-type: none;
@@ -77,6 +99,9 @@ nav .user li{
   border:2px solid #03f;
   border-radius: 5px;
 
+}
+.menu{
+  display: none;
 }
 nav .user li a{
   margin-top: 2px;
@@ -102,15 +127,12 @@ nav .user .join a:hover{
   background-color: #1d1;
   border-radius: 10px;
   }
-  nav .pages .menu{
-    position: absolute;
-    display: none;
-  }
+ 
 header {
   position: absolute;
   top: 40%;
   left: 50%;
-  width: 50%
+  width: 50%;
   transform: translate(-50%, -50%);
   color: #c0c0c0;
   text-align: center;
@@ -161,7 +183,7 @@ footer{
     margin: 1% 0;
     line-height: 20px;
     border-radius: 5px;
-    -webkit-border-radius: 5px
+    -webkit-border-radius: 5px;
     font-size: 1.3rem;
     font-family: 'Roboto Slab';
     box-sizing: border-box;
@@ -172,7 +194,7 @@ footer{
     margin: 1% 0;
     line-height: 20px;
     border-radius: 5px;
-    -webkit-border-radius: 5px
+    -webkit-border-radius: 5px;
     font-size: 1.3rem;
     font-family: 'Roboto Slab';
     box-sizing: border-box;
@@ -197,66 +219,42 @@ footer{
   cursor: pointer;
 }
 
-/*Responsive Design with Media Querries*/
-@media screen and  (max-width: 1100px){
-  #bigWrapper{
-    width: 100%;
-    overflow: hidden;
-  }
-  #Wrapper{
-    width: 100%;
-    background-size: cover;
-    overflow: hidden;
-  }
-  header{
-    text-align: left;
-    font-size: 12px;
-  }
-  footer{
-    width: 100%;
-    overflow: hidden;
-}
- nav{
-  text-align: center;
-  padding: 0;
-  overflow: visible;
- } 
- nav .pages{
-  float: none;
-  width: 100%;
- }
- nav .pages li{
-  display: block;
-  padding: 5px;
-  line-height: 30px;
-  background-color: #f55;
-  border-bottom: 1px solid #333;
-  overflow: hidden;
-  
- }
-nav .pages li:not(:first-child) {display: none;}
-nav .pages .menu{
-  display: block;
-  top:3px;
-  right: 5px;
-}
-nav .pages .responsive li{
-  display: block;
-  
- }
- nav .user{
-  position: absolute;
-  top:200px;
-  margin-left: 150px;
-  padding: 1px;
-  overflow: hidden;
-}
-nav .user li{
-  line-height: 3%;
-  font: 1rem solid;
-  font-family:  'Roboto';
-  border:1px solid #03f;
-  border-radius: 3px;
 
+nav .pages .responsive, nav .user .responsive{
+    display: inline-block;
 }
+
+@media screen and  (max-width: 908px){
+  nav .user{
+    margin-right: 20px;
+    padding: 1px;
+    display: inline-block;
+  }
+  nav .pages, nav .header{
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 670px){
+ nav .pages, nav .user{
+   margin-top: 10px;
+   display: none;
+   float: none;
+   margin-left: 3%;
+ }
+
+ nav .pages li, nav .user li{
+   display: block;
+   padding: 0;
+   border: transparent;
+   
+ }
+ nav .menu{
+   display: block;
+   position: absolute;
+   top: -7%;
+   right: 0;
+   margin: 0;
+   padding: 0;
+ }
 }
