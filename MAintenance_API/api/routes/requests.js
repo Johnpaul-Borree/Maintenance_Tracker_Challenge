@@ -12,7 +12,7 @@ const userRequests = [
 	{id: 2, type: "vehicles Maintenance", requestDate: "2018-03-19", requestTime: "11:36:32.456000", Summary: "vehicles are yet to be serviced for 2 months now"},
 	{id: 3, type: "Office Equipments", requestDate: "2018-03-11", requestTime: "09:41:40.973000", Summary: "Replacement of old office equipments"},
 	{id: 4, type: "electrical Faults", requestDate: "2018-03-01", requestTime: "07:46:20.645000", Summary: "Fixing Faultsin electric equipments"},
-	{id: 5, types: "Security", requestDate: "2018-02-14", requestTime: "14:31:34.2750500", Summary: "Replacement of old security devices"}
+	{id: 5, type: "Security", requestDate: "2018-02-14", requestTime: "14:31:34.2750500", Summary: "Replacement of old security devices"}
 ];
 
 //GET: /users/requests
@@ -24,7 +24,7 @@ router.get("/",(req, res) => {
 router.post("/",(req, res) => {
 
 	//validate input with joi.
-	const {error} = validateReuests(req.body);
+	const {error} = validateRequests(req.body);
 	if (error) {
 		//return Http status code 400 -- Bad Request
 		res.status(400).json(error.details[0].message);
@@ -67,7 +67,7 @@ router.put("/:id",(req, res) => {
 		return;
 	}
 
-	const {error} = validateReuests(req.body);
+	const {error} = validateRequests(req.body);
 	if (error) {
 		//return Http status code 400 -- Bad Request
 		res.status(400).json(error.details[0].message);
@@ -98,7 +98,7 @@ router.delete("/:id",(req, res) => {
 	res.json(userRequest);
 });
 
-function validateReuests(userRequest) {
+function validateRequests(userRequest) {
 	const schema ={
 		type: Joi.string().min(4).required(),
 		requestDate: Joi.date().format("YYYY-MM-DD").required(),

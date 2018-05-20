@@ -11,35 +11,41 @@
 	<div id="bigWrapper">
 		<div id="Wrapper">
 			<nav>
-					<ul class="pages" id="navMenu">
-						<li><a href="#Home">Maintenance Tracker</a></li>
-						<li><a href="#Contact">Contact</a></li>
+				<div id="navbars">
+					<div class="header">
+						<a href="#Home">Maintenance Tracker</a>
+						<a class="menu" href="javascript:void(0);"><img id="menuDrop" src="UI/Resources/Images/menu.svg"></a>
+					</div>
+					<ul class="pages menu-list">
+						<li ><a href="#Contact">Contact</a></li>
 						<li><a href="#Blog">Blog</a></li>
-						<a href="javascript:void(0);" class="menu"><img src="UI/Resources/Images/menu.svg" alt="" id="menuDrop"></a>
 					</ul>
-					<ul class="user">
-						<li class="sinin"><a href="#" id="member">Sin In</a></li>
-						<li class="join" id="joined"><a href="create.html" target="_blank">Join</a></li>
+					
+					<ul class="user menu-list">
+						<li><a href="#" id="member">Sin In</a></li>
+						<li><a href="UI/create.html" target="_blank">Join</a></li>
 					</ul>
+				</div>
 			</nav>
 			<header>
 					<p id="notice"> We have all it takes in making sure your <br> equipments are in good condition.<br>No more issues of faulty equipments,<br> you do not need to make a call <br>simply get started by clicking join. </p>
 			</header>
 			<div class="Login-User-Wrapper">
-	        <form class="login-user" id="login" name="user-form">
-	        	<span class="close" id="close">&times;</span>
-	        	<span class="create">USER LOGIN:</span><br><br>
-	            <input type="email" name="Email" placeholder="Email Address"><br><br>
-	            <input type="password" name="Password1" placeholder="Password"><br><br>
-	            <input type="submit" value="Login" id="reg"><br><br>
-	            <span class="create">Admin LOGIN:</span><br><br>
-	            <input type="email" name="Email" placeholder=" Email Address"><br><br>
-	            <input type="password" name="Password1" placeholder="Password"><br><br>
-	            <input type="submit" value="Login" id="reg">
-	        </form>
-    </div>
+				<form class="login-user" id="login" name="user-form">
+					<span class="close" id="close">&times;</span>
+					<span class="create">USER LOGIN:</span><br><br>
+					<input type="email" name="Email" placeholder="Email Address"><br><br>
+					<input type="password" name="Password1" placeholder="Password"><br><br>
+					<input type="submit" value="Login" id="reg"><br><br>
+					<span class="create">Admin LOGIN:</span><br><br>
+					<input type="email" name="Email" placeholder=" Email Address"><br><br>
+					<input type="password" name="Password1" placeholder="Password"><br><br>
+					<input type="submit" value="Login" id="reg">
+				</form>
+			</div>
+				
 		</div>
-	    <footer>
+	    <footer style="text-align:center">
 				<p>Maintenance Tracker Andela Bootcamp Preparatory Test
 				<br>&copy;<a href="#">Johnpaul Attamah</a>.</p>
 		    <p> Other Pages links ...</p>
