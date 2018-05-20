@@ -7,17 +7,22 @@
 	<link rel="stylesheet" type="text/css" href="Resources/css/user.css">
 </head>
 <body>
+	<header class="head user">
+		<a href="trigger"><span></span></a>
+		<h2>User Dashboard</h2>
+	</header>
 <section id="sideMenu">
 	<nav>
 		<a href="#">User Profile</a>
 		<a href="#">Make a Request</a>
-		<a href="#">View My Requests</a>
+		<a href="#" class="activeUser">View My Requests</a>
 	</nav>
 </section>
 <content id="mainBody">
-	<h1>User Details opened onthe Dash board as seen Here.</h1>
+	<h1>User Requests.</h1>
 	<p>View Requests Details</p>
-	<table>
+	<div class="tbhead">
+	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
 		<th>Request Type</th>
@@ -27,29 +32,33 @@
 		<th>Requst Resolved</th>
 	</tr>
 	</thead>
+	</table>
+	</div>
+	<div class="tblbody">
+	<table cellpadding="0" cellspacing="0">
 	<tbody>
-	<tr>
+	<tr class="requests">
 		<td>AUtomobile Repairs</td>
 		<td>Approved</td>
 		<td>6months ago</td>
 		<td>details</td>
 		<td>No</td>
 	</tr>
-	<tr>
+	<tr class="requests">
 		<td>Routine Maintenance</td>
 		<td>Rejected</td>
 		<td>3 Months</td>
 		<td>details</td>
 		<td>Never</td>
 	</tr>
-	<tr>
+	<tr class="requests">
 		<td>Systems Maintenance</td>
 		<td>Pending</td>
 		<td>4 montha</td>
 		<td>details</td>
 		<td>No</td>
 	</tr>
-	<tr>
+	<tr class="requests">
 		<td>Ergonomics</td>
 		<td>Pending</td>
 		<td>1 month</td>
@@ -58,6 +67,7 @@
 	</tr>
 	</tbody>
 </table>
+</div>
 </content>
 </body>
 </html>
