@@ -1,38 +1,56 @@
 <!DOCTYPE html>
 <html lang="eng-us">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>USER DASHBOARD</title>
-	<link rel="stylesheet" type="text/css" href="Resources/css/single_user.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ADMINISTRATOR DASHBOARD</title>
+  <link rel="stylesheet" type="text/css" href="Resources/css/user.css">
 </head>
 <body>
-	<h1>User Details</h1>
-	<table>
-  <tr>
-    <td>Request in clear form</td>
-    <td> Approve</td>
-    <td> Reject</td>
-    <td>Revert Changes</td>
+  <header class="head">
+    <a class="menu" href="javascript:void(0);"><img id="menuDrop" src="Resources/Images/menu.svg"></a>
+    <h2>ADMINISTRATOR</h2>
+  </header>
+<section id="sideMenu">
+  <nav>
+    <a href="#">My Profile</a>
+    <a href="#" class="active"> Users Requests</a>
+    <a href="#">Approved Requests</a>
+    <a href="#">Filter Requests</a>
+  </nav>
+</section>
+<content id="mainBody">
+  <h1>User Request Details</h1>
+  <button class="goback">&larr;Back</button>
+  <table cellpadding="0" cellspacing="0">
+    <thead>
+    <tr class="remark">
+    <th><button>Approve</button></th>
+    <th> <button>Reject</button></th>
+    <th><button>Revert Changes</button></th>
   </tr>
+  <tr>
+    <th>Request Type</th>
+    <th>Request Date</th>
+    <th>Request Time</th>
+    <th>summary</th>
+  </tr>
+</thead>
 </table>
   
-<table>
+<table cellpadding="0" cellspacing="0">
   <tr>
-    <td> Summary or long stories</td>
-    <td>Lorem ipsum dolor sit amet, homero denique vim ei, sit no prima aperiam similique, an nobis eruditi ius. Ea vis graecis platonem, eos et clita nonumy. Ex sea quis theophrastus, diam minimum ei pro. Id eos gubergren vulputate, omnesque reformidans an pri. Homero debitis similique eum te.
-
-Alii suas mentitum ex eos, ei dolore ceteros mandamus qui. No mucius philosophia per. Et vel nominavi senserit definitiones. Pro vidisse officiis ei, id definiebas adversarium nec.
-
-Has in summo mundi civibus, postulant abhorreant ad vim. Id usu suas ponderum similique, in argumentum quaerendum sed. Eu pri quas facilis, cu pro etiam tibique. Te usu quod latine. Nam at dicunt vituperatoribus, ex fugit soleat omittam vel, cu ius oratio aliquando. Id postea nemore nec.
-
-An esse aliquip sed, qui putant integre fastidii in. Argumentum definitionem in ius, id agam idque cum. Et sea populo deserunt sapientem, pri te sensibus pericula efficiendi. Sea mundi ornatus et, ut ius dictas luptatum. An vocibus noluisse cum.
-
-Mei at simul quidam contentiones. Pro no assum summo elaboraret, movet aliquando ad mea, vim option similique deterruisset et. Eam exerci sapientem ei, in quidam semper mea, ei ancillae nominavi posidonium sit. Sonet viderer ne sit, id deleniti ponderum qui, eu adhuc saepe electram his. Ea nulla eloquentiam usu, alii aeque pro cu.</td><td>Done.</td>
+    <td> Vehicle Maintenance</td>
+    <td> 04/23/2017 </td>
+    <td>11:18:56:Pm</td>
+    <td>Lorem ipsum dolor sit amet, homero denique vim ei, sit no prima aperiam similique, an nobis eruditi ius. E 
+         a vis graecis platonem, eos et clita nonumy. Ex sea quis theophrastus, diam minimum ei pro. Id eos gubergren 
+    </td>
   </tr>
 </table>
   
 </div>
 
+</content>
 </body>
 </html>
