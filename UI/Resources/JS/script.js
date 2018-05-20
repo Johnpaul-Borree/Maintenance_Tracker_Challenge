@@ -27,18 +27,28 @@ function handleEvents(e) {
       } else if (e.target === document.querySelector('#close')) {
         viewForm.style.display = "none";
       }else if(e.target === document.querySelector("#menuDrop")){
-      	myFunction();
+      	respond();
       }
       //console.log(document.getElementsByClassName('responsive'));
     }
-    //e.stopPropagation();
+    e.stopPropagation();
 }
 
-function myFunction() {
-    var navi = document.getElementById("navMenu");
-    if (navi.className === "pages") {
-        navi.className += " responsive";
-    } else {
-        navi.className = "pages";
+function respond() {
+    var navi = document.querySelectorAll('.menu-list');
+    //console.log(navi)
+    for(var i=0; i<navi.length; i++){
+        if(navi[i].style.display == 'none' || navi[i].style.display == ""){
+           // console.log(navi[i].style.display)
+            navi[i].style.display = "block";
+        }else if(navi[i].style.display == 'block'){
+            //console.log(navi[i].style.display)
+            navi[i].style.display = "none";
+        }
+       // console.log(navi[i].style.display)
+       else{
+            document.getElementById("navbars").classList.add("clear-fix");
+       }
     }
+
 }
