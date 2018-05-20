@@ -2,75 +2,91 @@
 @import url('https://fonts.googleapis.com/css? family=Anda|Permanent+Marker|Raleway:300');
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900);
 
+*{
+  box-sizing: border-box;
+}
 body{
 	padding: 0;
 	margin: 0 auto;
-	background-color: rgba(64,64,64,0.6);
+	background-color: #039209;
 	background-opacity:0.8;
     
 }
 
 .Create-User-Wrapper{
-  text-align: center;
-  position: absolute;
-  width:70%;
-  margin: 0.5% 10%;
+  text-align: left;
+  overflow: hidden;
 }
 .register-user{
   width:100%;
-  background-color: rgba(0,0,0,0.8);
-  padding: 0.4%;
-}.register-user input[type=text] {
-    width: 50%;
-    padding: 1% 1.5%;
-    margin: 1% 0;
+  /*background-color: rgba(0,0,0,0.8);*/
+  padding: 10px;
+  margin-left: 50px;
+}
+.register-user input[type=text] {
+    width: 80%;
+    padding: 8px 16px;
+    margin: 8px 0;
     line-height: 20px;
     border-radius: 5px;
-    -webkit-border-radius: 5px;
+    -webkit-border-radius: 5px
     font-size: 1.3rem;
     font-family: 'Roboto Slab';
     box-sizing: border-box;
 }
 .register-user input[type=Email] {
-    width: 50%;
-    padding: 1% 1.5%;
-    margin: 1% 0;
+    width: 80%;
+    padding: 8px 16px;
+    margin: 8px 0;
     line-height: 20px;
     border-radius: 5px;
-    -webkit-border-radius: 5px;
+    -webkit-border-radius: 5px
     font-size: 1.3rem;
     font-family: 'Roboto Slab';
     box-sizing: border-box;
 }
 .register-user input[type=password] {
-    width: 50%;
-    padding: 1% 1.5%;
-    margin: 1% 0;
+    width: 80%;
+    padding: 8px 16px;
+    margin: 8px 0;
     line-height: 20px;
     border-radius: 5px;
-    -webkit-border-radius: 5px;
+    -webkit-border-radius: 5px
     font-size: 1.3rem;
     font-family: 'Roboto Slab';
     box-sizing: border-box;
 }
 .register-user input[type=submit] {
-    padding:0.5% 1.5%; 
+    padding:5px 15px; 
     background:#c0c0c0; 
     border:0 none;
     cursor:pointer;
     -webkit-border-radius: 10px;
     border-radius: 10px; 
-    width:25%;
+    width:80px;
 
 }
 .register-user .create{
-  font-size: 2rem;
+  font-size: 3rem;
   color:#c0c0c0;
 }
 footer{
-  padding:15px;
+  padding:20px;
   background-color: #fefcff;
   position: absolute;
   bottom: 0;
   width: 100%;
+  overflow: hidden;
 }
+
+@media screen and (min-width: 800px){
+.register-user input[type=text] {
+    width: 50%;
+}
+.register-user input[type=Email] {
+    width: 50%;
+}
+.register-user input[type=password] {
+    width: 50%;
+}
+} 
