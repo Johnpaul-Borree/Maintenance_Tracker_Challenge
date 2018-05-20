@@ -7,78 +7,80 @@
 	<link rel="stylesheet" type="text/css" href="Resources/css/user.css">
 </head>
 <body>
+	<header class="head">
+		<a class="menu" href="javascript:void(0);"><img id="menuDrop" src="Resources/Images/menu.svg"></a>
+		<h2>ADMINISTRATOR</h2>
+	</header>
 <section id="sideMenu">
 	<nav>
-		<a href="#">My Admin Profile</a>
-		<a href="#">View user Requests</a>
+		<a href="#">My Profile</a>
+		<a href="#" class="active"> Users Requests</a>
+		<a href="#">Approved Requests</a>
 		<a href="#">Filter Requests</a>
 	</nav>
 </section>
 <content id="mainBody">
-	<h1>Admin View on Admin Dashboard</h1>
- <p>Click a user for more details</p>
-	<table>
-	<thead>
-	<tr>
-		<th>Request From</th>
-		<th>Request Type</th>
-		<th>Request Summary</th>
-		<th>Request TimeSpan</th>
-		<th>Request Solution</th>
-		<th>Remark (Approve/Reject)</th>
-		<th>Edit</th>
-		<th>Reports Summary</th>
-		<th>miscellanous</th>
-	</tr>
-	</thead>
+	<div class="bodi">
+		<h1>User Requests</h1>
+	 	<p>Click a user for more details</p>
+	</div>
+	<div class="tbhead">
+		<table cellpadding="0" cellspacing="0">
+			<thead>
+				<tr>
+					<th>Request From</th>
+					<th>Request Type</th>
+					<th>Request Summary</th>
+					<th>Request Date</th>
+					<th>Request Time</th>
+					<th>Request Solution</th>
+					<th>Remark (Approve/Reject)</th>
+				</tr>
+			</thead>
+		</table>
+    </div>
+    <div class="tblbody">
+    <table cellpadding="0" cellspacing="0">
 	<tbody>
-	<tr>
+	<tr class="requests">
 		<td>Details</td>
 		<td>AUtomobile Repairs</td>
 		<td>Details</td>
 		<td>7months ago</td>
 		<td>unclassified</td>
-		<td>-----------</td>
-		<td>-----------</td>
-		<td>Details</td>
+		<td>hjhhk</td>
 		<td>Details</td>
 	</tr>
-	<tr>
+	<tr class="requests">
 		<td>Details</td>
 		<td>AUtomobile Repairs</td>
 		<td>Details</td>
 		<td>7months ago</td>
 		<td>unclassified</td>
-		<td>-----------</td>
-		<td>-----------</td>
+		<td>hjhhk</td>
 		<td>Details</td>
-		<td>Details</td>
-
 	</tr>
-	<tr>
+	<tr class="requests">
 		<td>Details</td>
 		<td>AUtomobile Repairs</td>
 		<td>Details</td>
 		<td>7months ago</td>
 		<td>unclassified</td>
-		<td>-----------</td>
-		<td>-----------</td>
-		<td>Details</td>
+		<td>hjhhk</td>
 		<td>Details</td>
 	</tr>
-	<tr>
+	<tr class="requests">
 		<td>Details</td>
-		<td>Ergonomics</td>
-		<td>-----------</td>
-		<td>-----------</td>
+		<td>AUtomobile Repairs</td>
+		<td>Details</td>
 		<td>7months ago</td>
 		<td>unclassified</td>
-		<td>1 month</td>
 		<td>Details</td>
 		<td>Details</td>
 	</tr>
 	</tbody>
 </table>
+</div>
 </content>
 </body>
 </html>
