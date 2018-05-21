@@ -1,0 +1,35 @@
+{
+  "name": "maintenance_api",
+  "version": "1.0.0",
+  "description": "Maintenance TRacker API to enable users through API",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Johnpaul-Borree/Maintenance_Tracker_Challenge.git"
+  },
+  "author": "Johnpaul Attamah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Johnpaul-Borree/Maintenance_Tracker_Challenge/issues"
+  },
+  "homepage": "https://github.com/Johnpaul-Borree/Maintenance_Tracker_Challenge#readme",
+  "dependencies": {
+    "chai-http": "^4.0.0",
+    "express": "^4.16.3",
+    "joi": "^13.3.0",
+    "joi-date-extensions": "^1.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-latest": "^6.24.1",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.17.4",
+    "supertest": "^3.1.0"
+  }
+}
