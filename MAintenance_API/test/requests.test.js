@@ -12,3 +12,20 @@ const userRequests = [
 	{id: 5, type: "Security", requestDate: "2018-02-14", requestTime: "14:31:34.2750500", Summary: "Replacement of old security devices"}
 ];
 
+const should = chai.should();
+
+chai.use(chaiHttp);
+
+describe("User requests API integration testing", () => {
+	describe("#GET: /users/requests",() => {
+		it("should get all users requests",(done) => {
+			chai.request(router)
+				.get("/users/requests")
+				.end((err,res) => {
+					res.should.have.status(200);
+					res.body.should.be.a("array");
+					done();
+				});
+		});
+	});
+});
