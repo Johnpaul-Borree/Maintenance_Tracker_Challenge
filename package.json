@@ -4,7 +4,7 @@
   "description": "Maintenance TRacker API to enable users through API",
   "main": "server.js",
   "scripts": {
-    "test": "nyc --reporter=text mocha /MAintenance_API/test/requests.test",
+    "test": "nyc --reporter=text mocha test/*",
     "start": "node server.js"
   },
   "repository": {
