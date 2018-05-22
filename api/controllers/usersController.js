@@ -1,11 +1,6 @@
 const BaseJoi = require("joi");
 const Extension = require("joi-date-extensions");
 const Joi = BaseJoi.extend(Extension);
-const express = require("express");
-const router = express.Router();
-
-
-router.use(express.json());
 
 const userRequests = [
 	{id: 1, type: "generator Maintenance", requestDate: "2018-04-11", requestTime: "08:41:40.973000", Summary: "Generator is yet to be serviced for 3 months now"},
@@ -15,14 +10,11 @@ const userRequests = [
 	{id: 5, type: "Security", requestDate: "2018-02-14", requestTime: "14:31:34.2750500", Summary: "Replacement of old security devices"}
 ];
 
-//GET: /users/requests
-router.get("/",(req, res) => {
+exports.get_all_users_requests = (req, res) => {
 	res.json(userRequests);
-});
+};
 
-//POST:/users/request
-router.post("/",(req, res) => {
-
+exports.post_Requests = (req, res) => {
 	//validate input with joi.
 	const {error} = validateRequests(req.body);
 	if (error) {
@@ -41,10 +33,8 @@ router.post("/",(req, res) => {
 
 	userRequests.push(userRequest);
 	res.json(userRequest);
-});
-
-//GET: /users/requests/id
-router.get("/:id",(req, res) => {
+};
+exports.get_requests_by_Id = (req, res) => {
 	const requestId = parseInt(req.params.id);
 	const userRequest = userRequests.find(r => r.id === requestId);
 
@@ -55,10 +45,8 @@ router.get("/:id",(req, res) => {
 	}
 
 	res.json(userRequest);
-});
-
-//PUT /users/requests/id
-router.put("/:id",(req, res) => {
+};
+exports.update_requests = (req, res) => {
 	const requestId = parseInt(req.params.id);
 	const userRequest = userRequests.find(r => r.id === requestId);
 
@@ -80,10 +68,8 @@ router.put("/:id",(req, res) => {
 	userRequest.Summary     = req.body.Summary;
 
 	res.json(userRequest);
-});
-
-//DELETE /users/requests/id
-router.delete("/:id",(req, res) => {
+};
+exports.delete_requests = (req, res) => {
 	const requestId = parseInt(req.params.id);
 	const userRequest = userRequests.find(r => r.id === requestId);
 
@@ -96,8 +82,9 @@ router.delete("/:id",(req, res) => {
 	userRequests.splice(index,1);
 
 	res.json(userRequest);
-});
+};
 
+//validating function
 function validateRequests(userRequest) {
 	const schema ={
 		type: Joi.string().min(4).required(),
@@ -108,4 +95,3 @@ function validateRequests(userRequest) {
 
 	return Joi.validate(userRequest,schema);
 }
-module.exports = router;
