@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Johnpaul-Borree/Maintenance_Tracker_Challenge#readme",
   "dependencies": {
     "chai-http": "^4.0.0",
+    "codeclimate-test-reporter": "^0.5.0",
     "coveralls": "^3.0.1",
     "express": "^4.16.3",
     "istanbul": "^0.4.5",
