@@ -1,7 +1,7 @@
-const router = require("../server");
-const chai = require("chai");
-const chaiHttp = require("chai-http");
-const request = require("supertest");
+import router from "../server";
+import chai from "chai";
+import chaiHttp from "chai-http";
+import request from "supertest";
 
 
 const userRequests = [
@@ -18,10 +18,10 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe("User requests API integration testing", () => {
-	describe("#GET: /users/requests",() => {
+	describe("#GET: /api/v1/users/requests",() => {
 		it("should get all users requests",(done) => {
 			chai.request(router)
-				.get("/users/requests")
+				.get("/api/v1/users/requests")
 				.end((err,res) => {
 					res.should.have.status(200);
 					res.body.should.be.a("array");
@@ -33,7 +33,7 @@ describe("User requests API integration testing", () => {
 *Testing the /POST route
 */
 
-	describe("#POST: /users/requests",() =>{
+	describe("#POST: /api/v1/users/requests",() =>{
 		it("should not post requests without all fields in correct format",(done) =>{
 			const userRequest = {
 				type: "vehicles Maintenance",
@@ -43,7 +43,7 @@ describe("User requests API integration testing", () => {
 			};
 
 			chai.request(router)
-				.post("/users/requests")
+				.post("/api/v1/users/requests")
 				.send(userRequest)
 				.end((err,res) => {
 
@@ -64,7 +64,7 @@ describe("User requests API integration testing", () => {
 			};
 
 			chai.request(router)
-				.post("/users/requests")
+				.post("/api/v1/users/requests")
 				.send(userRequest)
 				.end((err,res) => {
 
@@ -84,12 +84,12 @@ describe("User requests API integration testing", () => {
 	* Test the GET: /users/requests/:id route
 	*/
 
-	describe("#GET: /users/requests/:id",() => {
+	describe("#GET: /api/v1/users/requests/:id",() => {
 
 		it("should GET user request by a given id",(done) => {
 			const userRequest = userRequests.find(r => r.id === 2);
 			chai.request(router)
-				.get("/users/requests/2").send(userRequest)
+				.get("/api/v1/users/requests/2").send(userRequest)
 				.end((err, res) => {
 					res.should.have.status(200);
 					res.body.should.be.a("object");
@@ -111,12 +111,12 @@ describe("User requests API integration testing", () => {
 	*Test the PUT: /users/requests/:id route
 	*/
 
-	describe("#PUT: /users/requests/:id",() => {
+	describe("#PUT: /api/v1/users/requests/:id",() => {
 
 		it("should update user request of a given id",(done) => {
 			const userRequest = {type: "Office Equipments", requestDate: "2018-03-11", requestTime: "09:41:40.973000", Summary: "Replacement of old office equipments"};
 			chai.request(router)
-				.put("/users/requests/3").send(userRequest)
+				.put("/api/v1/users/requests/3").send(userRequest)
 				.end((err, res) => {
 					res.should.have.status(200);
 					res.body.should.be.a("object");
@@ -133,12 +133,12 @@ describe("User requests API integration testing", () => {
 		});
 	});
 
-	describe("#DELETE: /users/requests/:id",() => {
+	describe("#DELETE: /api/v1/users/requests/:id",() => {
 
 		it("should delete user request of a given id",(done) => {
 			const userRequest = userRequests.find(r => r.id === 2);
 			chai.request(router)
-				.delete("/users/requests/2").send(userRequest)
+				.delete("/api/v1/users/requests/2").send(userRequest)
 				.end((err, res) => {
 					res.should.have.status(200);
 					res.body.should.be.a("object");
