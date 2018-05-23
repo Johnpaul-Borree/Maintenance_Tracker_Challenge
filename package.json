@@ -4,7 +4,7 @@
   "description": "Maintenance TRacker API to enable users through API",
   "main": "server.js",
   "scripts": {
-    "test": "nyc --reporter=text --reporter=html --reporter=text-lcov mocha test/* --exit",
+    "test": "nyc --reporter=text --reporter=html --reporter=text-lcov mocha --require babel-register test/* --exit",
     "start": "node --require babel-register server.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
