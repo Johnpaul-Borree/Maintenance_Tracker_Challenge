@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/Johnpaul-Borree/Maintenance_Tracker_Challenge.svg?branch=develop)](https://travis-ci.org/Johnpaul-Borree/Maintenance_Tracker_Challenge)
-
-[![Coverage Status](https://coveralls.io/repos/github/Johnpaul-Borree/Maintenance_Tracker_Challenge/badge.svg?branch=master)](https://coveralls.io/github/Johnpaul-Borree/Maintenance_Tracker_Challenge?branch=master)
+[![Build Status](https://travis-ci.org/Johnpaul-Borree/Maintenance_Tracker_Challenge.svg?branch=develop)](https://travis-ci.org/Johnpaul-Borree/Maintenance_Tracker_Challenge)  [![Coverage Status](https://coveralls.io/repos/github/JohnpaulBorree/Maintenance_Tracker_Challenge/badge.svg?branch=master)](https://coveralls.io/github/Johnpaul-Borree/Maintenance_Tracker_Challenge?branch=master) [![Maintainability](https://api.codeclimate.com/v1/badges/58db8a2728447c6f90c8/maintainability)](https://codeclimate.com/github/Johnpaul-Borree/Maintenance_Tracker_Challenge/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/58db8a2728447c6f90c8/test_coverage)](https://codeclimate.com/github/Johnpaul-Borree/Maintenance_Tracker_Challenge/test_coverage)
 
 # Maintenance_Tracker_Challenge
 
