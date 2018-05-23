@@ -1,20 +1,14 @@
-const express = require("express");
+import express from "express";
 const app = express();
 
 
 //import routes
-const requestRoutes = require("./api/routes/requests");
+import requestRoutes from "./api/routes/requests";
 
-app.use("/users/requests", requestRoutes);
+app.use("/api/v1", requestRoutes);
 
 app.set("json spaces",2);
 
-app.use((req, res) => {
-	res.status(200).json({
-		message : "connected"
-	});
-
-});
 
 
-module.exports = app;
+export default app;

@@ -1,7 +1,7 @@
-const router = require("../server");
-const chai = require("chai");
-const chaiHttp = require("chai-http");
-const request = require("supertest");
+import router from "../server";
+import chai from "chai";
+import chaiHttp from "chai-http";
+import request from "supertest";
 
 
 const userRequests = [
