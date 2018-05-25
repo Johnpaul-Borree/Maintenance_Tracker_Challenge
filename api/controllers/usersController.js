@@ -21,22 +21,34 @@ exports.signUp = (req, res) => {
 	bcrypt.hash(password,10, function(err, hash) {
 		if (err) {
 		//return Http status code 400 -- Bad Request
-		res.status(400).send("Bad Request! unable to hash password");
+			res.status(400).send("Bad Request! unable to hash password");
 		
-	}else{
-	const query = {
-			text: "INSERT INTO users(firstname, email, hashed_password) VALUES($1, $2, $3)",
-			values: [firstName, email, hash]
-		}; 
-		db.query(query,(err, res) =>{
+		}else{
+			const query = {
+				text: "INSERT INTO users(firstname, email, hashed_password) VALUES($1, $2, $3)",
+				values: [firstName, email, hash]
+			}; 
+			db.query(query,(err, res) =>{
 			// res.send(res);
-			console.log(res);
-			db.end();
-		});	
-	}
-});
+				console.log(res);
+				db.end();
+			});	
+		}
+	});
 	
-	
+	//Login with JWT
+
+	exports.login = (req, res) => {
+		const user = {
+			email: req.body.email,
+			password: req.body.password
+		};
+
+		var queryString = "SELECT * FROM users WHERE email = user.email";
+
+		console.log(queryString);
+		return;
+	};
 };
 exports.getRequests = (req, res) => {
 	res.json(userRequests);
