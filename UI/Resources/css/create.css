@@ -8,8 +8,8 @@
 body{
 	padding: 0;
 	margin: 0 auto;
-	background-color: #039209;
-	background-opacity:0.8;
+	background-color: #4f5e6d;
+	background-opacity:0.7;
     
 }
 
@@ -19,6 +19,7 @@ body{
 }
 .register-user{
   width:100%;
+  padding-top: 40px;
   /*background-color: rgba(0,0,0,0.8);*/
   padding: 10px;
   margin-left: 50px;
@@ -72,7 +73,7 @@ body{
 }
 footer{
   padding:20px;
-  background-color: #fefcff;
+  background-color: #c0c0c0;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -80,6 +81,10 @@ footer{
 }
 
 @media screen and (min-width: 800px){
+.register-user{
+  width:50%;
+  margin: 40px auto;
+
 .register-user input[type=text] {
     width: 50%;
 }
