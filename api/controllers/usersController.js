@@ -2,42 +2,77 @@ import BaseJoi from"joi";
 import Extension from "joi-date-extensions";
 import bcrypt from "bcrypt";
 import db from "../models/database";
+import jwt from "jsonwebtoken";
 
 const Joi = BaseJoi.extend(Extension);
 
 //old version 
-// const userRequests = [
-// 	{id: 1, type: "generator Maintenance", requestDate: "2018-04-11", requestTime: "08:41:40.973000", Summary: "Generator is yet to be serviced for 3 months now"},
-// 	{id: 2, type: "vehicles Maintenance", requestDate: "2018-03-19", requestTime: "11:36:32.456000", Summary: "vehicles are yet to be serviced for 2 months now"},
-// 	{id: 3, type: "Office Equipments", requestDate: "2018-03-11", requestTime: "09:41:40.973000", Summary: "Replacement of old office equipments"},
-// 	{id: 4, type: "electrical Faults", requestDate: "2018-03-01", requestTime: "07:46:20.645000", Summary: "Fixing Faultsin electric equipments"},
-// 	{id: 5, type: "Security", requestDate: "2018-02-14", requestTime: "14:31:34.2750500", Summary: "Replacement of old security devices"}
-// ];
+const userRequests = [
+	{id: 1, type: "generator Maintenance", requestDate: "2018-04-11", requestTime: "08:41:40.973000", Summary: "Generator is yet to be serviced for 3 months now"},
+	{id: 2, type: "vehicles Maintenance", requestDate: "2018-03-19", requestTime: "11:36:32.456000", Summary: "vehicles are yet to be serviced for 2 months now"},
+	{id: 3, type: "Office Equipments", requestDate: "2018-03-11", requestTime: "09:41:40.973000", Summary: "Replacement of old office equipments"},
+	{id: 4, type: "electrical Faults", requestDate: "2018-03-01", requestTime: "07:46:20.645000", Summary: "Fixing Faultsin electric equipments"},
+	{id: 5, type: "Security", requestDate: "2018-02-14", requestTime: "14:31:34.2750500", Summary: "Replacement of old security devices"}
+];
 
 exports.signUp = (req, res) => {
 
 	const {firstName, email, password} = req.body;
 
-	bcrypt.hash(password,10, function(err, hash) {
+	bcrypt.hash(password,10, (err, hash) => {
 		if (err) {
 		//return Http status code 400 -- Bad Request
-		res.status(400).send("Bad Request! unable to hash password");
+			res.status(400).send("Bad Request! unable to hash password");
 		
-	}else{
-	const query = {
-			text: "INSERT INTO users(firstname, email, hashed_password) VALUES($1, $2, $3)",
-			values: [firstName, email, hash]
-		}; 
-		db.query(query,(err, res) =>{
-			// res.send(res);
-			console.log(res);
-			db.end();
-		});	
-	}
-});
-	
-	
+		}else{
+			const query = {
+				text: "INSERT INTO users(firstname, email, hashed_password) VALUES($1, $2, $3)",
+				values: [firstName, email, hash]
+			}; 
+			db.query(query,(err, res) =>{
+				console.log(res);
+				db.end();
+			});	
+		}
+	});
 };
+//Login with JWT
+
+exports.login = (req, res) => {
+	const user = {
+		email: req.body.email,
+		password: req.body.password
+	};
+
+	const query = {
+				text: "SELECT * FROM users WHERE email = $1",
+				values: [user.email]
+			};
+			db.query(query,(err,res) => {
+				if(err){
+					console.log(err);
+					return;
+				}
+				const hashedPassword = res.rows[0].hashed_password;
+				db.end();
+
+	bcrypt.compare(user.password,hashedPassword, (err, res) => {
+		if(res){
+			user.password = hashedPassword;
+			console.log(user.password);
+		} else {
+		console.log("Passwords don't match"); 
+		} 
+	});
+			});	
+			//console.log(user.password);
+			jwt.sign({user}, "secretkey",  (err, token) => {
+				res.json({
+					token
+				});
+			});
+};
+
 exports.getRequests = (req, res) => {
 	res.json(userRequests);
 };

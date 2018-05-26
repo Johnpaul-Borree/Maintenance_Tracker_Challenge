@@ -61,7 +61,7 @@ section a:hover{
 }
 content {
 	position: absolute;
-	width: 80%;
+	width: 75%;
 	left: 5%;
 	top: 14%;
 	z-index: 3;
@@ -88,8 +88,8 @@ content .bodi p{
 	margin-bottom: 8px;
 }
 table{
-	background: -webkit-linear-gradient(left, #25c481,#25b7c4);
-	background: linear-gradient(to right, #25c481,#25b7c4);
+	background: -webkit-linear-gradient(left, #25c481,#25b7cc);
+	background: linear-gradient(to right, #25c481,#25b7cc);
 	border: 0;
 	width: 100%;
 	table-layout: fixed;
@@ -202,7 +202,7 @@ th button{
 		text-align: left;
 	}
 	content{
-		width: 80%;
+		width: 70%;
 		left: 270px;
 	}
 	th button{
