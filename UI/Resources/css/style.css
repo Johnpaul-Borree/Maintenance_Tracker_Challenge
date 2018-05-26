@@ -170,7 +170,8 @@ footer{
 .login-user{
   width:100%;
   background-color: rgba(60,80,128,0.8);
-  padding: 1%;
+  padding: 10%;
+  margin-top: 5%;
 }
 .login-user .create{
   font-size: 1.6rem;
@@ -178,7 +179,7 @@ footer{
   margin: 1% 0;
 }
 .login-user input[type=Email] {
-    width: 50%;
+    width: 70%;
     padding: 1% 1.5%;
     margin: 1% 0;
     line-height: 20px;
@@ -189,7 +190,7 @@ footer{
     box-sizing: border-box;
 }
 .login-user input[type=password] {
-    width: 50%;
+    width: 70%;
     padding: 1% 1.5%;
     margin: 1% 0;
     line-height: 20px;
@@ -213,7 +214,7 @@ footer{
   position: absolute;
   text-align: right;
   right: 2%;
-  top: 0.5%;
+  top: 8%;
   font-size: 2rem;
   color:#fff;
   cursor: pointer;

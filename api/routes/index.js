@@ -4,22 +4,27 @@ const router = express.Router();
 
 router.use(express.json());
 
-import { getRequests, signUp, postRequests, getRequestsById, updateRequests, deleteRequests } from "../controllers/usersController";
+import { getRequests, signUp, postRequests, getRequestsById, updateRequests, deleteRequests, /*(login*/ } from "../controllers/usersController";
 
+//POST: /api/v1/users/signUp
 router.post("/users/signup", signUp);
-//GET: /users/requests
+
+//POST: /api/v1/users/login
+// router.post("/users/login", login);
+
+//GET: /api/users/requests
 router.get("/users/requests", getRequests);
 
-//POST:/users/request
+//POST:/api/users/request
 router.post("/users/requests", postRequests);
 
-//GET: /users/requests/id
+//GET: /api/users/requests/id
 router.get("/users/requests/:id", getRequestsById);
 
-//PUT /users/requests/id
+//PUT /api/users/requests/id
 router.put("/users/requests/:id", updateRequests);
 
-//DELETE /users/requests/id
+//DELETE /api/users/requests/id
 router.delete("/users/requests/:id", deleteRequests);
 
 

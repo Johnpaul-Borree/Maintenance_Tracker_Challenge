@@ -2,6 +2,7 @@ import BaseJoi from"joi";
 import Extension from "joi-date-extensions";
 import bcrypt from "bcrypt";
 import db from "../models/database";
+import jwt from "jsonwebtoken";
 
 const Joi = BaseJoi.extend(Extension);
 
@@ -18,26 +19,60 @@ exports.signUp = (req, res) => {
 
 	const {firstName, email, password} = req.body;
 
-	bcrypt.hash(password,10, function(err, hash) {
+	bcrypt.hash(password,10, (err, hash) => {
 		if (err) {
 		//return Http status code 400 -- Bad Request
-		res.status(400).send("Bad Request! unable to hash password");
+			res.status(400).send("Bad Request! unable to hash password");
 		
-	}else{
-	const query = {
-			text: "INSERT INTO users(firstname, email, hashed_password) VALUES($1, $2, $3)",
-			values: [firstName, email, hash]
-		}; 
-		db.query(query,(err, res) =>{
-			// res.send(res);
-			console.log(res);
-			db.end();
-		});	
-	}
-});
-	
-	
+		}else{
+			const query = {
+				text: "INSERT INTO users(firstname, email, hashed_password) VALUES($1, $2, $3)",
+				values: [firstName, email, hash]
+			}; 
+			db.query(query,(err, res) =>{
+				console.log(res);
+				db.end();
+			});	
+		}
+	});
 };
+//Login with JWT
+
+exports.login = (req, res) => {
+	const user = {
+		email: req.body.email,
+		password: req.body.password
+	};
+
+	const query = {
+				text: "SELECT * FROM users WHERE email = $1",
+				values: [user.email]
+			};
+			db.query(query,(err,res) => {
+				if(err){
+					console.log(err);
+					return;
+				}
+				const hashedPassword = res.rows[0].hashed_password;
+				db.end();
+
+	bcrypt.compare(user.password,hashedPassword, (err, res) => {
+		if(res){
+			user.password = hashedPassword;
+			console.log(user.password);
+		} else {
+		console.log("Passwords don't match"); 
+		} 
+	});
+			});	
+			//console.log(user.password);
+			jwt.sign({user}, "secretkey",  (err, token) => {
+				res.json({
+					token
+				});
+			});
+};
+
 exports.getRequests = (req, res) => {
 	res.json(userRequests);
 };
