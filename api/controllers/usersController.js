@@ -37,22 +37,6 @@ exports.signUp = (req, res) => {
 	});
 };
 
-exports.requestTable = (req, res) => {
-
-	const {type, requestDate, requestTime, summary, usersId} = req.body;
-
-	const query = {
-		text: "INSERT INTO requests(type, request_date, request_time, summary, users_id) VALUES($1, $2, $3, $4, $5)",
-		values: [type, requestDate, requestTime, summary, usersId]
-	}; 
-	db.query(query,(err, result) =>{
-		console.log(result);
-		return res.status(200);
-		db.end();
-	});	
-	
-};
-
 //Login with JWT
 
 exports.login = (req, res) => {
@@ -152,24 +136,21 @@ exports.getRequests = (req, res) => {
 };
 
 exports.postRequests = (req, res) => {
-	//validate input with joi.
-	const {error} = validateRequests(req.body);
-	if (error) {
-		//return Http status code 400 -- Bad Request
-		res.status(400).json(error.details[0].message);
-		return;
-	}
 
-	const userRequest = {
-		id: userRequests.length +1,
-		type: req.body.type,
-		requestDate: req.body.requestDate,
-		requestTime: req.body.requestTime,
-		Summary: req.body.Summary
-	};
+	const {type, requestDate, requestTime, summary, usersId} = req.body;
 
-	userRequests.push(userRequest);
-	res.json(userRequest);
+	const query = {
+		text: "INSERT INTO requests(type, request_date, request_time, summary, users_id) VALUES($1, $2, $3, $4, $5)",
+		values: [type, requestDate, requestTime, summary, usersId]
+	}; 
+	db.query(query,(err, result) =>{
+		console.log(result);
+		
+		return res.status(200);
+
+		//db.end();
+	});	
+	res.json("sucess!");
 };
 exports.getRequestsById = (req, res) => {
 	const requestId = parseInt(req.params.id);
@@ -222,13 +203,14 @@ exports.deleteRequests = (req, res) => {
 };
 
 //validating function
-function validateRequests(userRequest) {
-	const schema ={
-		type: Joi.string().min(4).required(),
-		requestDate: Joi.date().format("YYYY-MM-DD").required(),
-		requestTime: Joi.date().format("HH:mm:ss.SSSSSS").required(),
-		Summary: Joi.string().min(10).required()
-	};
+// function validateRequests(userRequest) {
+// 	const schema ={
+// 		usersId: Joi.int(4).required(),
+// 		type: Joi.string().min(4).required(),
+// 		requestDate: Joi.date().format("YYYY-MM-DD").required(),
+// 		requestTime: Joi.date().format("HH:mm:ss").required(),
+// 		summary: Joi.string().min(10).required()
+// 	};
 
-	return Joi.validate(userRequest,schema);
-}
+// 	return Joi.validate(userRequest,schema);
+// }
