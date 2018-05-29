@@ -136,13 +136,6 @@ exports.getRequests = (req, res) => {
 };
 
 exports.postRequests = (req, res) => {
-	//validate input with joi.
-	const {error} = validateRequests(req.body);
-	if (error) {
-		//return Http status code 400 -- Bad Request
-		res.status(400).json(error.details[0].message);
-		return;
-	}
 
 	const {type, requestDate, requestTime, summary, usersId} = req.body;
 
@@ -152,10 +145,12 @@ exports.postRequests = (req, res) => {
 	}; 
 	db.query(query,(err, result) =>{
 		console.log(result);
+		
 		return res.status(200);
 
 		//db.end();
 	});	
+	res.json("sucess!");
 };
 exports.getRequestsById = (req, res) => {
 	const requestId = parseInt(req.params.id);
@@ -208,13 +203,14 @@ exports.deleteRequests = (req, res) => {
 };
 
 //validating function
-function validateRequests(userRequest) {
-	const schema ={
-		type: Joi.string().min(4).required(),
-		requestDate: Joi.date().format("YYYY-MM-DD").required(),
-		requestTime: Joi.date().format("HH:mm:ss.SSSSSS").required(),
-		Summary: Joi.string().min(10).required()
-	};
+// function validateRequests(userRequest) {
+// 	const schema ={
+// 		usersId: Joi.int(4).required(),
+// 		type: Joi.string().min(4).required(),
+// 		requestDate: Joi.date().format("YYYY-MM-DD").required(),
+// 		requestTime: Joi.date().format("HH:mm:ss").required(),
+// 		summary: Joi.string().min(10).required()
+// 	};
 
-	return Joi.validate(userRequest,schema);
-}
+// 	return Joi.validate(userRequest,schema);
+// }
