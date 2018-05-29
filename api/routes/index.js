@@ -7,10 +7,10 @@ router.use(express.json());
 import { getRequests, signUp, postRequests, getRequestsById, updateRequests, deleteRequests, requestTable, login, verifyToken, authenticateUser } from "../controllers/usersController";
 
 //POST: /api/v1/users/signUp
-router.post("/users/signup", signUp);
+router.post("/auth/signup", signUp);
 
 //POST: /api/v1/users/login
-router.post("/users/login", login);
+router.post("/auth/login", login);
 
 router.post("/users/requestTable", verifyToken, authenticateUser, requestTable);
 
