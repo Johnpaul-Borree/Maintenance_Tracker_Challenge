@@ -153,7 +153,20 @@ exports.postRequests = (req, res) => {
 	res.json("sucess!");
 };
 exports.getRequestsById = (req, res) => {
-	const requestId = parseInt(req.params.id);
+
+	const userId = req.userId;
+	// console.log(userId);
+	const query = {
+		text: "SELECT * FROM requests WHERE users_id = $1",
+		values: [userId]
+	}; 
+
+	db.query(query,(err, result) =>{
+		if(err){
+		console.log(err);
+	   }else{
+	   	const userRequests = result.rows;
+	   	const requestId = parseInt(req.params.id);
 	const userRequest = userRequests.find(r => r.id === requestId);
 
 	if (!userRequest) {
@@ -163,6 +176,10 @@ exports.getRequestsById = (req, res) => {
 	}
 
 	res.json(userRequest);
+	   	// console.log(userRequests);
+	   }
+		db.end();
+	});	
 };
 exports.updateRequests = (req, res) => {
 	const requestId = parseInt(req.params.id);

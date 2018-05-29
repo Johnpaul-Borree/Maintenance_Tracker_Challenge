@@ -19,7 +19,7 @@ router.get("/users/requests", verifyToken, authenticateUser, getRequests);
 router.post("/users/requests", verifyToken, authenticateUser, postRequests);
 
 //GET: /api/users/requests/id
-router.get("/users/requests/:id", getRequestsById);
+router.get("/users/requests/:id", verifyToken, authenticateUser, getRequestsById);
 
 //PUT /api/users/requests/id
 router.put("/users/requests/:id", updateRequests);
