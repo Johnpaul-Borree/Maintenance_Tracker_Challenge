@@ -37,22 +37,6 @@ exports.signUp = (req, res) => {
 	});
 };
 
-exports.requestTable = (req, res) => {
-
-	const {type, requestDate, requestTime, summary, usersId} = req.body;
-
-	const query = {
-		text: "INSERT INTO requests(type, request_date, request_time, summary, users_id) VALUES($1, $2, $3, $4, $5)",
-		values: [type, requestDate, requestTime, summary, usersId]
-	}; 
-	db.query(query,(err, result) =>{
-		console.log(result);
-		return res.status(200);
-		db.end();
-	});	
-	
-};
-
 //Login with JWT
 
 exports.login = (req, res) => {
@@ -160,16 +144,18 @@ exports.postRequests = (req, res) => {
 		return;
 	}
 
-	const userRequest = {
-		id: userRequests.length +1,
-		type: req.body.type,
-		requestDate: req.body.requestDate,
-		requestTime: req.body.requestTime,
-		Summary: req.body.Summary
-	};
+	const {type, requestDate, requestTime, summary, usersId} = req.body;
 
-	userRequests.push(userRequest);
-	res.json(userRequest);
+	const query = {
+		text: "INSERT INTO requests(type, request_date, request_time, summary, users_id) VALUES($1, $2, $3, $4, $5)",
+		values: [type, requestDate, requestTime, summary, usersId]
+	}; 
+	db.query(query,(err, result) =>{
+		console.log(result);
+		return res.status(200);
+
+		//db.end();
+	});	
 };
 exports.getRequestsById = (req, res) => {
 	const requestId = parseInt(req.params.id);
