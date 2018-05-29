@@ -20,6 +20,25 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
+
+before((done) => {
+	chai.request(router)
+				.post("/api/v1/auth/login")
+				.send(
+					{ 
+					email:"johnson@email.com",
+					password: "johnson2018"
+				})
+				.end((err, res) => {
+					//console.log(res);
+				});
+				done();
+	
+	global.token = req.body.token;
+
+
+});
+
 describe("User SignUp and Login", () => {
 	describe("#POST: /api/v1/auth/signup",() => {
 		it("should SignUp new users",(done) => {
@@ -27,9 +46,9 @@ describe("User SignUp and Login", () => {
 				.post("/api/v1/auth/signup")
 				.send(
 					{ 
-					firstName: "Lukas",
-					email:"lukas@gmail.com",
-					password: "lukas2018",
+					firstName: "Johnson",
+					email:"johnson@email.com",
+					password: "johnson2018",
 					isAdmin:false,
 				})
 				.end((err, res) => {
@@ -47,8 +66,8 @@ describe("User SignUp and Login", () => {
 				.post("/api/v1/auth/login")
 				.send(
 					{ 
-					email:"lukas@gmail.com",
-					password: "lukas2018"
+					email:"johnson@email.com",
+					password: "johnson2018"
 				})
 				.end((err, res) => {
 					res.should.have.status(200);
@@ -57,10 +76,35 @@ describe("User SignUp and Login", () => {
 				done();
 
 		});
+	});
+});
 
+	
+	-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+//Testing API EndPoints
 
+describe("User requests API integration testing", () => {
 
+	describe("#GET: /api/v1/users/requests",() => {
+		it("should get all users requests",(done) => {
+			chai.request(router)
+				.get("/api/v1/users/requests")
+				.end((err,res) => {
+					res.should.have.status(200);
+					res.body.should.be.a("object");
+		
+				});
+
+				done();
+		});
 
 	});
 
-});
+
+
+
+
+
+
+
+});	
