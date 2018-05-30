@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.use(express.json());
 
-import { getRequests, signUp, postRequests, getRequestsById, updateRequests, deleteRequests, login, verifyToken, authenticateUser } from "../controllers/usersController";
+import { getRequests, signUp, postRequests, getRequestsById, updateRequests, login, verifyToken, authenticateUser } from "../controllers/usersController";
 
 //POST: /api/v1/users/signUp
 router.post("/auth/signup", signUp);
@@ -22,10 +22,10 @@ router.post("/users/requests", verifyToken, authenticateUser, postRequests);
 router.get("/users/requests/:id", verifyToken, authenticateUser, getRequestsById);
 
 //PUT /api/users/requests/id
-router.put("/users/requests/:id", updateRequests);
+router.put("/users/requests/:id", verifyToken, authenticateUser, updateRequests);
 
 //DELETE /api/users/requests/id
-router.delete("/users/requests/:id", deleteRequests);
+//router.delete("/users/requests/:id", deleteRequests);
 
 
 export default router;
