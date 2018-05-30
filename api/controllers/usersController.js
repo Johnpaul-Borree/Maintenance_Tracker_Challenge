@@ -182,42 +182,55 @@ exports.getRequestsById = (req, res) => {
 	});	
 };
 exports.updateRequests = (req, res) => {
-	const requestId = parseInt(req.params.id);
+	// const requestId = parseInt(req.params.id);
+	// const userRequest = userRequests.find(r => r.id === requestId);
+
+	// if (!userRequest) {
+	// 	res.status(404).send("The request with the given id was not found");
+	// 	return;
+	// }
+
+	const userId = req.userId;
+	// console.log(userId);
+	const query = {
+		text: "UPDATE requests SET type=$1, request_date=$2, request_time=$3, summary=$4 WHERE id=$5 RETURNING *",
+		values: [req.body.type, req.body.requestDate, req.body.requestTime, req.body.summary, req.params.id]
+	}; 
+
+	db.query(query,(err, result) =>{
+		if(err){
+		console.log(err);
+	   }else{
+	   	const userRequests = result.rows;
+	   	const requestId = parseInt(req.params.id);
 	const userRequest = userRequests.find(r => r.id === requestId);
 
 	if (!userRequest) {
-		res.status(404).send("The request with the given id was not found");
+		//404 status code error
+		res.status(404).json("The request with the given id was not found");
 		return;
 	}
-
-	const {error} = validateRequests(req.body);
-	if (error) {
-		//return Http status code 400 -- Bad Request
-		res.status(400).json(error.details[0].message);
-		return;
-	}
-
-	userRequest.type        = req.body.type;
-	userRequest.requestDate = req.body.requestDate;
-	userRequest.requestTime = req.body.requestTime;
-	userRequest.Summary     = req.body.Summary;
 
 	res.json(userRequest);
+	   	// console.log(userRequests);
+	   }
+		db.end();
+	});	
 };
-exports.deleteRequests = (req, res) => {
-	const requestId = parseInt(req.params.id);
-	const userRequest = userRequests.find(r => r.id === requestId);
+// exports.deleteRequests = (req, res) => {
+// 	const requestId = parseInt(req.params.id);
+// 	const userRequest = userRequests.find(r => r.id === requestId);
 
-	if (!userRequest) {
-		res.status(404).send("The request with the given id was not found");
-		return;
-	}
+// 	if (!userRequest) {
+// 		res.status(404).send("The request with the given id was not found");
+// 		return;
+// 	}
 
-	const index = userRequests.indexOf(userRequest);
-	userRequests.splice(index,1);
+// 	const index = userRequests.indexOf(userRequest);
+// 	userRequests.splice(index,1);
 
-	res.json(userRequest);
-};
+// 	res.json(userRequest);
+// };
 
 //validating function
 // function validateRequests(userRequest) {
@@ -230,4 +243,4 @@ exports.deleteRequests = (req, res) => {
 // 	};
 
 // 	return Joi.validate(userRequest,schema);
-// }
+ //}
