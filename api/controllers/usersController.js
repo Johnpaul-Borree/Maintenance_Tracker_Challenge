@@ -110,6 +110,7 @@ exports.authenticateUser = (req, res, next) => {
 		// 	});
 		// }
 		req.userId = authData.id;
+		req.email = authData.email;
 	});
 	
 	next();
@@ -211,7 +212,9 @@ exports.updateRequests = (req, res) => {
 	});	
 };
 
+
 exports.getAllRequests = (req, res) => {
+
 	const query = {
 		text: "SELECT * FROM requests",
 	}; 
@@ -227,3 +230,55 @@ exports.getAllRequests = (req, res) => {
 		db.end();
 	});	
 };
+
+
+exports.approveRequest = (req, res) => {
+
+	const requestId = req.params.id;
+
+	const query = {
+
+		text: "UPDATE requests SET status=$1 WHERE id=$2",
+		values: ["approved", requestId]
+	};
+	db.query(query, (err, result) =>{
+		if(err){
+			console.log(err);
+			res.send(400);
+		}else{
+			console.log(result);
+			res.json("success!");
+		}
+	});
+};
+
+
+exports.getAdmin = (req, res, next) => {
+	const email = req.email;
+	const query = { 
+		text: "SELECT * FROM users WHERE isadmin = $1",
+		values: [true]
+	};
+
+	db.query(query, (err, result) => {
+		if (err){
+			console.log(err);
+		}else{
+			const arr = [];
+			for (let i = 0; i < result.rows.length; i++) {
+				arr.push(result.rows[i].email);
+			}
+			//console.log(arr);
+
+			if(arr.indexOf(email) === -1){
+				return res.json("Admin route!");
+			}
+
+			next();
+		}
+	});
+
+	
+};
+
+
