@@ -182,13 +182,6 @@ exports.getRequestsById = (req, res) => {
 	});	
 };
 exports.updateRequests = (req, res) => {
-	// const requestId = parseInt(req.params.id);
-	// const userRequest = userRequests.find(r => r.id === requestId);
-
-	// if (!userRequest) {
-	// 	res.status(404).send("The request with the given id was not found");
-	// 	return;
-	// }
 
 	const userId = req.userId;
 	// console.log(userId);
@@ -217,30 +210,20 @@ exports.updateRequests = (req, res) => {
 		db.end();
 	});	
 };
-// exports.deleteRequests = (req, res) => {
-// 	const requestId = parseInt(req.params.id);
-// 	const userRequest = userRequests.find(r => r.id === requestId);
 
-// 	if (!userRequest) {
-// 		res.status(404).send("The request with the given id was not found");
-// 		return;
-// 	}
+exports.getAllRequests = (req, res) => {
+	const query = {
+		text: "SELECT * FROM requests",
+	}; 
 
-// 	const index = userRequests.indexOf(userRequest);
-// 	userRequests.splice(index,1);
-
-// 	res.json(userRequest);
-// };
-
-//validating function
-// function validateRequests(userRequest) {
-// 	const schema ={
-// 		usersId: Joi.int(4).required(),
-// 		type: Joi.string().min(4).required(),
-// 		requestDate: Joi.date().format("YYYY-MM-DD").required(),
-// 		requestTime: Joi.date().format("HH:mm:ss").required(),
-// 		summary: Joi.string().min(10).required()
-// 	};
-
-// 	return Joi.validate(userRequest,schema);
- //}
+	db.query(query,(err, result) =>{
+		if(err){
+		console.log(err);
+	   }else{
+	   	const userRequests = result.rows;
+	   	// console.log(userRequests);
+		res.status(200).json(userRequests);
+	   }
+		db.end();
+	});	
+};
