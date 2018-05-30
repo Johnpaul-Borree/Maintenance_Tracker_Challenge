@@ -252,6 +252,26 @@ exports.approveRequest = (req, res) => {
 	});
 };
 
+exports.disapproveRequest = (req, res) => {
+
+	const requestId = req.params.id;
+
+	const query = {
+
+		text: "UPDATE requests SET status=$1 WHERE id=$2",
+		values: ["Not Approved", requestId]
+	};
+	db.query(query, (err, result) =>{
+		if(err){
+			console.log(err);
+			res.send(400);
+		}else{
+			console.log(result);
+			res.json("success!");
+		}
+	});
+};
+
 
 exports.getAdmin = (req, res, next) => {
 	const email = req.email;
