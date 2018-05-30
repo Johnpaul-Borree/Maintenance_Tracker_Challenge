@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.use(express.json());
 
-import { /*resolveRequest,*/ disapproveRequest, approveRequest, getAdmin, getAllRequests, getRequests, signUp, postRequests, getRequestsById, updateRequests, login, verifyToken, authenticateUser } from "../controllers/usersController";
+import { resolveRequest, disapproveRequest, approveRequest, getAdmin, getAllRequests, getRequests, signUp, postRequests, getRequestsById, updateRequests, login, verifyToken, authenticateUser } from "../controllers/usersController";
 
 //POST: /api/v1/users/signUp
 router.post("/auth/signup", signUp);
@@ -31,10 +31,10 @@ router.get("/requests", verifyToken, authenticateUser, getAdmin, getAllRequests)
 router.put("/requests/:id/approve", verifyToken, authenticateUser, getAdmin, approveRequest);
 
 //PUT: /api/v1/requests/<requestId>/approve
- router.put("/requests/:id/disapprove", verifyToken, authenticateUser, getAdmin, disapproveRequest);
+router.put("/requests/:id/disapprove", verifyToken, authenticateUser, getAdmin, disapproveRequest);
 
 //PUT: /api/v1/requests/<requestId>/approve
-// router.put("/requests/:id/resolve", verifyToken, authenticateUser, getAdmin, resolveRequest);
+router.put("/requests/:id/resolve", verifyToken, authenticateUser, getAdmin, resolveRequest);
 
 
 export default router;
