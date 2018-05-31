@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
-import db from "../models/database";
 import jwt from "jsonwebtoken";
-
+import db from "../models/database";
 
 
 exports.signUp = (req, res) => {
@@ -10,7 +9,7 @@ exports.signUp = (req, res) => {
 
 	db.query("SELECT * FROM users",(err, result) => {
 		if(err){
-			res.status(400).send("Bad Request! unable to hash password");
+			res.status(400).send("Bad Request!");
 		}else{
 			//compairing email.
 
@@ -63,9 +62,7 @@ exports.login = (req, res) => {
 	};
 	db.query(query,(err,result) => {
 		if(err){
-			res.status(400).send("Bad Request! unable to hash password");
-			//console.log(err);
-			return;
+			return res.status(400).send("Bad Request!");
 		}
 		const hashedPassword = result.rows[0].hashed_password;
 		const userId = result.rows[0].id;
