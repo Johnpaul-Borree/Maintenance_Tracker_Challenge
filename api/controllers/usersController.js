@@ -1,27 +1,20 @@
 import bcrypt from "bcrypt";
-import db from "../models/database";
 import jwt from "jsonwebtoken";
-
+import db from "../models/database";
 
 
 exports.signUp = (req, res) => {
 
 	const {firstName, email, password} = req.body;
 
-	db.query("SELECT * FROM users",(err, result) => {
+	//compairing email.
+
+	db.query("SELECT * FROM users WHERE email = $1",[email], (err, result) => {
 		if(err){
 			res.status(400).send("Bad Request!");
 		}else{
-			//compairing email.
 
-			const resultArray = [];
-
-			for (let i = 0; i < result.rows.length; i++) {
-				resultArray.push(result.rows[i].email);
-			}
-			//console.log(resultArray);
-
-			if(resultArray.indexOf(email) !== -1){
+			if(result.rows > 0){
 				return res.json("Email already exists!");
 			}else{
 				bcrypt.hash(password, 10, (err, hash) => {
@@ -38,8 +31,6 @@ exports.signUp = (req, res) => {
 							if(err){
 								res.json("There was a problem connecting to database!");
 							}
-							//console.log(response);
-							//db.end();
 							res.json("Account created successfully!");
 						});	
 					}
@@ -48,6 +39,7 @@ exports.signUp = (req, res) => {
 		}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 	});
 };
+
 
 //Login with JWT
 
@@ -63,39 +55,40 @@ exports.login = (req, res) => {
 	};
 	db.query(query,(err,result) => {
 		if(err){
-			res.status(400).send("Bad Request! unable to hash password");
-			//console.log(err);
-			return;
+			return res.status(400).send("Bad Request!");
 		}
 		const hashedPassword = result.rows[0].hashed_password;
 		const userId = result.rows[0].id;
-		// db.end();
+		//db.end();
 
 		bcrypt.compare(user.password,hashedPassword, (err, resp) => {
 			if(resp){
-				//console.log("match");
 				const token = jwt.sign({
 					id: userId,
 					email:user.email
 				}, 
 				"secretkey", 
-				{ expiresIn: "1hr"}
+				{ expiresIn: "2hr"}
 
 				);
-				res.status(200).json({token});
+				res.status(200).json({
+					token:token,
+					message: "connected"
+
+				});
 			} else {
-				//console.log("Passwords don't match");
 				res.sendStatus(403); 
 			} 
 		});
 	});	
-			
 };
+
+
 //Middleware to verify Token
 exports.verifyToken = (req, res, next) => {
 //Authentification Header
 	const bearerHeader = req.headers["authorization"];
-	if(typeof bearerHeader !== "undefined"){
+	if(bearerHeader){
 		//we need to store like array of words.
 		const bearer = bearerHeader.split(" ");
 		//Get Token From the Array
@@ -113,25 +106,19 @@ exports.verifyToken = (req, res, next) => {
 exports.authenticateUser = (req, res, next) => {
 	jwt.verify(req.token, "secretkey", (err, authData) => {
 		if(err){
-			res.status(403);
+			res.status(403).json("You must login to continue");
 		}
-		// }else{
-
-		// 	res.json({
-		// 		Message: "created",
-		// 		authData
-		// 	});
-		// }
 		req.userId = authData.id;
 		req.email = authData.email;
 	});
 	
 	next();
 };
+
+
 //GET ALL REQUEST FOR A LOGGED USER
 exports.getRequests = (req, res) => {
 	const userId = req.userId;
-	// console.log(userId);
 	const query = {
 		text: "SELECT * FROM requests WHERE users_id = $1",
 		values: [userId]
@@ -140,13 +127,11 @@ exports.getRequests = (req, res) => {
 	db.query(query,(err, result) =>{
 		if(err){
 			res.status(400).send("Bad Request! unable to hash password");
-			//console.log(err);
 		}else{
 			const userRequests = result.rows;
-			// console.log(userRequests);
 			res.status(200).json(userRequests);
 		}
-		db.end();
+		//db.end();
 	});	
 };
 
@@ -163,21 +148,18 @@ exports.postRequests = (req, res) => {
 		if(err){
 			res.status(400).send("Bad Request! unable to hash password");
 		}
-		//console.log(result);
 		
 		return res.status(200).json("success!");
 
-		//db.end();
 	});	
 
 };
 exports.getRequestsById = (req, res) => {
 
 	const userId = req.userId;
-	// console.log(userId);
 	const query = {
-		text: "SELECT * FROM requests WHERE users_id = $1",
-		values: [userId]
+		text: "SELECT * FROM requests WHERE users_id = $1 AND id = $2",
+		values: [userId, req.params.id]
 	}; 
 
 	db.query(query,(err, result) =>{
@@ -198,7 +180,7 @@ exports.getRequestsById = (req, res) => {
 			res.json(userRequest);
 			// console.log(userRequests);
 		}
-		db.end();
+		//db.end();
 	});	
 };
 exports.updateRequests = (req, res) => {
@@ -232,7 +214,7 @@ exports.updateRequests = (req, res) => {
 						res.json("success!");
 						// console.log(userRequests);
 					}
-					db.end();
+					//db.end();
 				});	
 			}
 			res.json("Can not Update Approved request!");
@@ -257,7 +239,7 @@ exports.getAllRequests = (req, res) => {
 			// console.log(userRequests);
 			res.status(200).json(userRequests);
 		}
-		db.end();
+		//db.end();
 	});	
 };
 

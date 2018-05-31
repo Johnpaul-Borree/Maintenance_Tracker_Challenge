@@ -25,7 +25,7 @@ router.post("/auth/signup", signUp);
 //POST: /api/v1/auth/login
 router.post("/auth/login", login);
 
-//GET: /api/v1/users/requests/userId
+//GET: /api/v1/users/requests/
 router.get("/users/requests", verifyToken, authenticateUser, getRequests);
 
 //POST:/api/v1/users/request

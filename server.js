@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import requestRoutes from "./api/routes/index";
 
 const app = express();
-
+// 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
