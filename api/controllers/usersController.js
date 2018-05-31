@@ -1,39 +1,51 @@
-import BaseJoi from"joi";
-import Extension from "joi-date-extensions";
 import bcrypt from "bcrypt";
 import db from "../models/database";
 import jwt from "jsonwebtoken";
 
-const Joi = BaseJoi.extend(Extension);
 
-//old version 
-// const userRequests = [
-// 	{id: 1, type: "generator Maintenance", requestDate: "2018-04-11", requestTime: "08:41:40.973000", Summary: "Generator is yet to be serviced for 3 months now"},
-// 	{id: 2, type: "vehicles Maintenance", requestDate: "2018-03-19", requestTime: "11:36:32.456000", Summary: "vehicles are yet to be serviced for 2 months now"},
-// 	{id: 3, type: "Office Equipments", requestDate: "2018-03-11", requestTime: "09:41:40.973000", Summary: "Replacement of old office equipments"},
-// 	{id: 4, type: "electrical Faults", requestDate: "2018-03-01", requestTime: "07:46:20.645000", Summary: "Fixing Faultsin electric equipments"},
-// 	{id: 5, type: "Security", requestDate: "2018-02-14", requestTime: "14:31:34.2750500", Summary: "Replacement of old security devices"}
-// ];
 
 exports.signUp = (req, res) => {
 
 	const {firstName, email, password} = req.body;
 
-	bcrypt.hash(password, 10, (err, hash) => {
-		if (err) {
-		//return Http status code 400 -- Bad Request
+	db.query("SELECT * FROM users",(err, result) => {
+		if(err){
 			res.status(400).send("Bad Request! unable to hash password");
-		
 		}else{
-			const query = {
-				text: "INSERT INTO users(firstname, email, hashed_password, isadmin) VALUES($1, $2, $3, $4)",
-				values: [firstName, email, hash, false]
-			}; 
-			db.query(query,(err, res) =>{
-				console.log(res);
-				//db.end();
-			});	
-		}
+			//compairing email.
+
+			const resultArray = [];
+
+			for (let i = 0; i < result.rows.length; i++) {
+				resultArray.push(result.rows[i].email);
+			}
+			//console.log(resultArray);
+
+			if(resultArray.indexOf(email) !== -1){
+				return res.json("Email already exists!");
+			}else{
+				bcrypt.hash(password, 10, (err, hash) => {
+					if (err) {
+						//return Http status code 400 -- Bad Request
+						res.status(400).send("Bad Request! unable to hash password");
+		
+					}else{
+						const query = {
+							text: "INSERT INTO users(firstname, email, hashed_password, isadmin) VALUES($1, $2, $3, $4)",
+							values: [firstName, email, hash, false]
+						}; 
+						db.query(query,(err) =>{
+							if(err){
+								res.json("There was a problem connecting to database!");
+							}
+							//console.log(response);
+							//db.end();
+							res.json("Account created successfully!");
+						});	
+					}
+				});
+			}
+		}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 	});
 };
 
@@ -46,36 +58,37 @@ exports.login = (req, res) => {
 	};
 
 	const query = {
-				text: "SELECT * FROM users WHERE email = $1",
-				values: [user.email]
-			};
-			db.query(query,(err,result) => {
-				if(err){
-					console.log(err);
-					return;
-				}
-				const hashedPassword = result.rows[0].hashed_password;
-				const userId = result.rows[0].id;
-				// db.end();
+		text: "SELECT * FROM users WHERE email = $1",
+		values: [user.email]
+	};
+	db.query(query,(err,result) => {
+		if(err){
+			res.status(400).send("Bad Request! unable to hash password");
+			//console.log(err);
+			return;
+		}
+		const hashedPassword = result.rows[0].hashed_password;
+		const userId = result.rows[0].id;
+		// db.end();
 
-	bcrypt.compare(user.password,hashedPassword, (err, resp) => {
-		if(resp){
-			console.log("match");
-		const token = jwt.sign({
-				id: userId,
-				email:user.email
-			}, 
-			"secretkey", 
-			{ expiresIn: "1hr"}
+		bcrypt.compare(user.password,hashedPassword, (err, resp) => {
+			if(resp){
+				//console.log("match");
+				const token = jwt.sign({
+					id: userId,
+					email:user.email
+				}, 
+				"secretkey", 
+				{ expiresIn: "1hr"}
 
-			);
-			res.status(200).json({token});
-		} else {
-		console.log("Passwords don't match");
-		res.sendStatus(403); 
-		} 
-	});
-			});	
+				);
+				res.status(200).json({token});
+			} else {
+				//console.log("Passwords don't match");
+				res.sendStatus(403); 
+			} 
+		});
+	});	
 			
 };
 //Middleware to verify Token
@@ -93,7 +106,7 @@ exports.verifyToken = (req, res, next) => {
 		next();
 	}else{
 		//Forbidden
-	res.status(403);
+		res.status(403);
 	}
 };
 
@@ -126,32 +139,37 @@ exports.getRequests = (req, res) => {
 
 	db.query(query,(err, result) =>{
 		if(err){
-		console.log(err);
-	   }else{
-	   	const userRequests = result.rows;
-	   	// console.log(userRequests);
-		res.status(200).json(userRequests);
-	   }
+			res.status(400).send("Bad Request! unable to hash password");
+			//console.log(err);
+		}else{
+			const userRequests = result.rows;
+			// console.log(userRequests);
+			res.status(200).json(userRequests);
+		}
 		db.end();
 	});	
 };
 
 exports.postRequests = (req, res) => {
 
-	const {type, requestDate, requestTime, summary, usersId} = req.body;
+	const usersId = req.userId;
+	const {type, requestDate, requestTime, summary} = req.body;
 
 	const query = {
 		text: "INSERT INTO requests(type, request_date, request_time, summary, users_id) VALUES($1, $2, $3, $4, $5)",
 		values: [type, requestDate, requestTime, summary, usersId]
 	}; 
-	db.query(query,(err, result) =>{
-		console.log(result);
+	db.query(query,(err) =>{
+		if(err){
+			res.status(400).send("Bad Request! unable to hash password");
+		}
+		//console.log(result);
 		
-		return res.status(200);
+		return res.status(200).json("success!");
 
 		//db.end();
 	});	
-	res.json("sucess!");
+
 };
 exports.getRequestsById = (req, res) => {
 
@@ -164,21 +182,22 @@ exports.getRequestsById = (req, res) => {
 
 	db.query(query,(err, result) =>{
 		if(err){
-		console.log(err);
-	   }else{
-	   	const userRequests = result.rows;
-	   	const requestId = parseInt(req.params.id);
-	const userRequest = userRequests.find(r => r.id === requestId);
+			res.status(400).send("Bad Request! unable to hash password");
+			//console.log(err);
+		}else{
+			const userRequests = result.rows;
+			const requestId = parseInt(req.params.id);
+			const userRequest = userRequests.find(r => r.id === requestId);
 
-	if (!userRequest) {
-		//404 status code error
-		res.status(404).json("The request with the given id was not found");
-		return;
-	}
+			if (!userRequest) {
+				//404 status code error
+				res.status(404).json("The request with the given id was not found");
+				return;
+			}
 
-	res.json(userRequest);
-	   	// console.log(userRequests);
-	   }
+			res.json(userRequest);
+			// console.log(userRequests);
+		}
 		db.end();
 	});	
 };
@@ -186,30 +205,40 @@ exports.updateRequests = (req, res) => {
 
 	const userId = req.userId;
 	// console.log(userId);
-	const query = {
-		text: "UPDATE requests SET type=$1, request_date=$2, request_time=$3, summary=$4 WHERE id=$5 RETURNING *",
-		values: [req.body.type, req.body.requestDate, req.body.requestTime, req.body.summary, req.params.id]
-	}; 
-
-	db.query(query,(err, result) =>{
+	db.query("SELECT * FROM requests WHERE users_id = $1",[userId], (err, result) => {
 		if(err){
-		console.log(err);
-	   }else{
-	   	const userRequests = result.rows;
-	   	const requestId = parseInt(req.params.id);
-	const userRequest = userRequests.find(r => r.id === requestId);
+			res.status(400).send("Bad Request! unable to hash password");
+		}else{
+			const userRequests = result.rows;
+			const requestId = parseInt(req.params.id);
+			const userRequest = userRequests.find(r => r.id === requestId);
 
-	if (!userRequest) {
-		//404 status code error
-		res.status(404).json("The request with the given id was not found");
-		return;
-	}
+			if (!userRequest) {
+				//404 status code error
+				res.status(404).json("The request with the given id was not found");
+				return;
+			}
+			if(userRequest.status !== "approved"){
+				const query = {
+					text: "UPDATE requests SET type=$1, request_date=$2, request_time=$3, summary=$4 WHERE id=$5 RETURNING *",
+					values: [req.body.type, req.body.requestDate, req.body.requestTime, req.body.summary, req.params.id]
+				}; 	
 
-	res.json(userRequest);
-	   	// console.log(userRequests);
-	   }
-		db.end();
-	});	
+				db.query(query,(err) =>{
+					if(err){
+						res.status(400).send("Bad Request!");
+						//console.log(err);
+					}else{
+						res.json("success!");
+						// console.log(userRequests);
+					}
+					db.end();
+				});	
+			}
+			res.json("Can not Update Approved request!");
+		} 
+	});
+	
 };
 
 
@@ -221,12 +250,13 @@ exports.getAllRequests = (req, res) => {
 
 	db.query(query,(err, result) =>{
 		if(err){
-		console.log(err);
-	   }else{
-	   	const userRequests = result.rows;
-	   	// console.log(userRequests);
-		res.status(200).json(userRequests);
-	   }
+			res.status(400).send("Bad Request!");
+			//console.log(err);
+		}else{
+			const userRequests = result.rows;
+			// console.log(userRequests);
+			res.status(200).json(userRequests);
+		}
 		db.end();
 	});	
 };
@@ -241,12 +271,12 @@ exports.approveRequest = (req, res) => {
 		text: "UPDATE requests SET status=$1 WHERE id=$2",
 		values: ["approved", requestId]
 	};
-	db.query(query, (err, result) =>{
+	db.query(query, (err) =>{
 		if(err){
-			console.log(err);
-			res.send(400);
+			//console.log(err);
+			res.status(400).send("Bad Request!");
 		}else{
-			console.log(result);
+			//console.log(result);
 			res.json("success!");
 		}
 	});
@@ -261,12 +291,12 @@ exports.disapproveRequest = (req, res) => {
 		text: "UPDATE requests SET status=$1 WHERE id=$2",
 		values: ["Not Approved", requestId]
 	};
-	db.query(query, (err, result) =>{
+	db.query(query, (err) =>{
 		if(err){
-			console.log(err);
-			res.send(400);
+			//console.log(err);
+			res.status(400).send("Bad Request!");
 		}else{
-			console.log(result);
+			//console.log(result);
 			res.json("success!");
 		}
 	});
@@ -281,12 +311,12 @@ exports.resolveRequest = (req, res) => {
 		text: "UPDATE requests SET status=$1 WHERE id=$2",
 		values: ["resolved", requestId]
 	};
-	db.query(query, (err, result) =>{
+	db.query(query, (err) =>{
 		if(err){
-			console.log(err);
-			res.send(400);
+			//console.log(err);
+			res.status(400).send("Bad Request!");
 		}else{
-			console.log(result);
+			//console.log(result);
 			res.json("success!");
 		}
 	});
@@ -301,7 +331,8 @@ exports.getAdmin = (req, res, next) => {
 
 	db.query(query, (err, result) => {
 		if (err){
-			console.log(err);
+			res.status(400).send("Bad Request!");
+			//console.log(err);
 		}else{
 			const arr = [];
 			for (let i = 0; i < result.rows.length; i++) {
