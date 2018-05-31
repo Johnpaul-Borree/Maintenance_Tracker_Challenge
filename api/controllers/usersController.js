@@ -10,7 +10,7 @@ exports.signUp = (req, res) => {
 
 	db.query("SELECT * FROM users",(err, result) => {
 		if(err){
-			res.status(400).send("Bad Request! unable to hash password");
+			res.status(400).send("Bad Request!");
 		}else{
 			//compairing email.
 
