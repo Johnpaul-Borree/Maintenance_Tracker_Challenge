@@ -4,9 +4,22 @@ const router = express.Router();
 
 router.use(express.json());
 
-import { resolveRequest, disapproveRequest, approveRequest, getAdmin, getAllRequests, getRequests, signUp, postRequests, getRequestsById, updateRequests, login, verifyToken, authenticateUser } from "../controllers/usersController";
+import { resolveRequest, 
+	disapproveRequest, 
+	approveRequest, 
+	getAdmin, 
+	getAllRequests, 
+	getRequests, 
+	signUp, 
+	postRequests, 
+	getRequestsById, 
+	updateRequests, 
+	login, 
+	verifyToken, 
+	authenticateUser 
+} from "../controllers/usersController";
 
-//POST: /api/v1/users/signUp
+//POST: /api/v1/auth/signUp
 router.post("/auth/signup", signUp);
 
 //POST: /api/v1/auth/login
