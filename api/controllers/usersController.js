@@ -13,7 +13,6 @@ exports.signUp = (req, res) => {
 		if(err){
 			res.status(400).send("Bad Request!");
 		}else{
-			console.log(result);
 			if(result.rows.length > 0){
 				return res.json("Email already exists!");
 			}
