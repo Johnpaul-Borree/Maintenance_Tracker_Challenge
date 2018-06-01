@@ -13,29 +13,28 @@ exports.signUp = (req, res) => {
 		if(err){
 			res.status(400).send("Bad Request!");
 		}else{
-
-			if(result.rows > 0){
+			console.log(result);
+			if(result.rows.length > 0){
 				return res.json("Email already exists!");
-			}else{
-				bcrypt.hash(password, 10, (err, hash) => {
-					if (err) {
-						//return Http status code 400 -- Bad Request
-						res.status(400).send("Bad Request! unable to hash password");
-		
-					}else{
-						const query = {
-							text: "INSERT INTO users(firstname, email, hashed_password, isadmin) VALUES($1, $2, $3, $4)",
-							values: [firstName, email, hash, false]
-						}; 
-						db.query(query,(err) =>{
-							if(err){
-								res.json("There was a problem connecting to database!");
-							}
-							res.json("Account created successfully!");
-						});	
-					}
-				});
 			}
+			bcrypt.hash(password, 10, (err, hash) => {
+				if (err) {
+					//return Http status code 400 -- Bad Request
+					res.status(400).send("Bad Request! unable to hash password");
+	
+				}else{
+					const query = {
+						text: "INSERT INTO users(firstname, email, hashed_password, isadmin) VALUES($1, $2, $3, $4)",
+						values: [firstName, email, hash, false]
+					}; 
+					db.query(query,(err) =>{
+						if(err){
+							res.json("There was a problem connecting to database!");
+						}
+						res.json("Account created successfully!");
+					});	
+				}
+			});
 		}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 	});
 };
