@@ -7,10 +7,7 @@
    padding: 0;
    box-sizing: border-box;
   font-family: 'Source Sans Pro', sans-serif;
-  /*font-family: 'Roboto Slab', 
-  font-family: 'Roboto', */
 }
-
 #bigWrapper{
   width:100%;
   margin: 0;
@@ -96,7 +93,7 @@ nav .user li{
   line-height: 80px;
   font: 1.5rem solid;
   font-family:  'Roboto';
-  border:2px solid #03f;
+  border:2px solid #fff;
   border-radius: 5px;
 
 }
@@ -143,6 +140,7 @@ header p {
   font-weight: bolder;
 }
 header p a{
+  position: absolute;
   text-decoration: none;
   font-size: 1rem;
   color:#c0c0c0;
@@ -152,7 +150,8 @@ header p a{
 }
 
 footer{
-  padding:20px;
+  text-align: center;
+  padding:10px;
   background-color: #fefcff;
   position: absolute;
   bottom: 0;
@@ -169,7 +168,8 @@ footer{
 .login-user{
   width:100%;
   background-color: rgba(60,80,128,0.8);
-  padding: 1%;
+  padding: 10%;
+  margin-top: 5%;
 }
 .login-user .create{
   font-size: 1.6rem;
@@ -177,7 +177,7 @@ footer{
   margin: 1% 0;
 }
 .login-user input[type=Email] {
-    width: 50%;
+    width: 70%;
     padding: 1% 1.5%;
     margin: 1% 0;
     line-height: 20px;
@@ -188,7 +188,7 @@ footer{
     box-sizing: border-box;
 }
 .login-user input[type=password] {
-    width: 50%;
+    width: 70%;
     padding: 1% 1.5%;
     margin: 1% 0;
     line-height: 20px;
@@ -212,7 +212,7 @@ footer{
   position: absolute;
   text-align: right;
   right: 2%;
-  top: 0.5%;
+  top: 8%;
   font-size: 2rem;
   color:#fff;
   cursor: pointer;
@@ -251,7 +251,7 @@ nav .pages .responsive, nav .user .responsive{
  nav .menu{
    display: block;
    position: absolute;
-   top: -5%;
+   top: -7%;
    right: 0;
    margin: 0;
    padding: 0;
