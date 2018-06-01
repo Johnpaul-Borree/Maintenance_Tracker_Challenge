@@ -9,15 +9,16 @@ body{
 	box-sizing: border-box;
 }
 header{
-	position: absolute;
+	position: fixed;
 	height: 44px;
 	width: 100%;
-	background-color: rgb(59,89,152);
+	background-color: rgb(59,89,252);
 	text-align: center;
 	z-index: 4;
 }
-header h2{
-	color:#c0c0c0;
+h2{
+	text-align: center;
+	color:#2244cc;
 	padding-bottom: 8px;
 }
 header .menu{
@@ -25,19 +26,19 @@ header .menu{
 	left: 2px;
 }
 .user, .activeUser{
-	background-color: #ff6600;
+	background-color: #2244cc;
 }
 input[type="submit"]{
 	width: 300px;
 	padding: 10px;
-	background-color: #ff6600;
+	background-color: #2244cc;
 	font-size: 30px;
 	margin-top: 10px;
 	cursor: pointer;
 }
 section{
 	display: none;
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	background-color: rgba(131,156,165,0.8);
 	height: 100vh;
@@ -61,7 +62,7 @@ section a:hover{
 }
 content {
 	position: absolute;
-	width: 80%;
+	width: 75%;
 	left: 5%;
 	top: 14%;
 	z-index: 3;
@@ -88,8 +89,8 @@ content .bodi p{
 	margin-bottom: 8px;
 }
 table{
-	background: -webkit-linear-gradient(left, #25c481,#25b7c4);
-	background: linear-gradient(to right, #25c481,#25b7c4);
+	background: -webkit-linear-gradient(left, #25c481,#25b7cc);
+	background: linear-gradient(to right, #25c481,#25b7cc);
 	border: 0;
 	width: 100%;
 	table-layout: fixed;
@@ -202,7 +203,7 @@ th button{
 		text-align: left;
 	}
 	content{
-		width: 80%;
+		width: 70%;
 		left: 270px;
 	}
 	th button{
