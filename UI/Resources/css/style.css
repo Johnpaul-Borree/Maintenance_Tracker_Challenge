@@ -7,10 +7,7 @@
    padding: 0;
    box-sizing: border-box;
   font-family: 'Source Sans Pro', sans-serif;
-  /*font-family: 'Roboto Slab', 
-  font-family: 'Roboto', */
 }
-
 #bigWrapper{
   width:100%;
   margin: 0;
@@ -96,7 +93,7 @@ nav .user li{
   line-height: 80px;
   font: 1.5rem solid;
   font-family:  'Roboto';
-  border:2px solid #03f;
+  border:2px solid #fff;
   border-radius: 5px;
 
 }
@@ -153,7 +150,8 @@ header p a{
 }
 
 footer{
-  padding:20px;
+  text-align: center;
+  padding:10px;
   background-color: #fefcff;
   position: absolute;
   bottom: 0;
